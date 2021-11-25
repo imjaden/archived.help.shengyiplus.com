@@ -1,0 +1,789 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <title>整洁 Javascript 代码 — 胜因学院</title>
+    <meta charset="utf-8">
+    <meta name="description" content="Vue.js - The Progressive JavaScript Framework">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="整洁 Javascript 代码 — Vue.js">
+    <meta property="og:description" content="Vue.js - The Progressive JavaScript Framework">
+    <meta property="og:image" content="https://cn.vuejs.org//images/logo.png">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="整洁 Javascript 代码 — Vue.js">
+    <meta name="twitter:description" content="Vue.js - The Progressive JavaScript Framework">
+    <meta name="twitter:image" content="https://cn.vuejs.org/images/logo.png">
+
+    <link rel="icon" href="/images/intfocus.png" type="image/png">
+
+    <meta name="msapplication-TileColor" content="#4fc08d">
+    <meta name="theme-color" content="#4fc08d">
+
+    <meta name="msapplication-config" content="browserconfig.xml">
+    <link rel="manifest" href="/manifest.json">
+
+    <!-- <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Roboto Mono' rel='stylesheet' type='text/css'> -->
+    <!-- <link href='//fonts.googleapis.com/css?family=Dosis:500&text=Vue.js' rel='stylesheet' type='text/css'> -->
+
+    <link href="//code.bdstatic.com/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- main page styles -->
+    <link rel="stylesheet" href="/css/page.css">
+
+    <!-- this needs to be loaded before guide's inline scripts -->
+    <script src="/js/vue.js"></script>
+    <script>
+      Vue.config.productionTip = false
+      window.PAGE_TYPE = "整洁 Javascript 代码"
+    </script>
+  </head>
+  <body class="docs">
+    <div id="mobile-bar" >
+      <a class="menu-button"></a>
+      <a class="logo" href="/"></a>
+    </div>
+    <div id="header">
+  <a id="logo" href="/">
+    <img src="/images/logo.png" alt="vue logo">
+    <span>Intfocus</span>
+  </a>
+  <ul id="nav">
+    <li>
+  <form id="search-form">
+    <input type="text" id="search-query-nav" class="search-query st-default-search-input">
+  </form>
+</li>
+<li class="nav-dropdown-container learn">
+  <a class="nav-link current">生态系统</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><h4>应用实例</h4></li>
+    <li>
+      <ul>
+        <li><a href="/application/syp-wxmp.html" class="nav-link">胜因学院<small>(小程序)</small></a></li>
+        <li><a href="/application/syp-android-tv.html" class="nav-link">胜因盒子<small>(TV大屏)</small></a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container learn">
+  <a class="nav-link current">开发文档</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><a href="/developer/guide.html" class="nav-link current">规范指南</a></li>
+    <li><h4>编程规范</h4></li>
+    <li>
+      <ul>
+        <li><a href="/developer/style-guide/gitlab.html" class="nav-link">Gitlab</a></li>
+        <li><a href="/developer/style-guide/java.html" class="nav-link">Java</a></li>
+        <li><a href="/developer/style-guide/mysql.html" class="nav-link">MySQL</a></li>
+        <li><a href="/developer/style-guide/javascript.html" class="nav-link">Javascript</a></li>
+        <li><a href="/developer/style-guide/cdn.html" class="nav-link">CDN 运维</a></li>
+      </ul>
+    </li>
+    <li><h4>开发规范</h4></li>
+    <li>
+      <ul>
+        <li><a href="/developer/environment-guide.html" class="nav-link">环境规范<small></small></a></li>
+        <li><a href="/developer/etl-devops-guide.html" class="nav-link">ETL 运维<small></small></a></li>
+        <li><a href="/developer/api-design-guide.html" class="nav-link">API 设计<small></small></a></li>
+        <li><a href="/developer/rdc-guide.html" class="nav-link">RDC 接口<small></small></a></li>
+        <li><a href="/developer/menu-guide.html" class="nav-link">业务菜单<small></small></a></li>
+      </ul>
+    </li>
+    <li><h4>接口文档</h4></li>
+    <li>
+      <ul>
+        <li><a href="/developer/api-guide/syp-wxmp.html" class="nav-link">胜因学院<small>(小程序)</small></a></li>
+        <li><a href="/developer/api-guide/datav-report.html" class="nav-link">DataV报表<small>(大屏)</small></a></li>
+        <li><a href="/developer/api-guide/java-admin-add-module.html" class="nav-link">添加模块<small>(运营平台)</small></a></li>
+      </ul>
+    </li>
+    <li><h4>项目源码</h4></li>
+    <li>
+      <ul>
+        <li><a href="/developer/project-connections.html" class="nav-link">源码体系</a></li>
+        <li><a href="/developer/sypctl-readme.html" class="nav-link">SypCtl 工具</a></li>
+        <li><a href="/developer/jenkins-deploy.html" class="nav-link">Jenkins 部署</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container learn">
+  <a class="nav-link current">企业文化</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><h4>职场培训</h4></li>
+    <li>
+      <ul>
+        <li><a href="/corporate-culture/workplace-ceremony.html" class="nav-link">职场共识</a></li>
+        <li><a href="/corporate-culture/teamwork.html" class="nav-link">职场协作</a></li>
+      </ul>
+    </li>
+    <li><h4>生命力</h4></li>
+    <li>
+      <ul>
+        <li><a href="/corporate-culture/online-documents.html" class="nav-link">在线文档</a></li>
+        <li><a href="/corporate-culture/weekly-publication.html" class="nav-link">胜因周刊</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="https://www.intfocus.com" target="_blank" class="nav-link team">官网</a>
+</li>
+
+  </ul>
+</div>
+
+    
+    
+      <div id="main" class="fix-sidebar">
+        
+          
+  <div class="sidebar">
+  <div class="sidebar-inner">
+    <ul class="main-menu">
+      <li>
+  <form id="search-form">
+    <input type="text" id="search-query-sidebar" class="search-query st-default-search-input">
+  </form>
+</li>
+<li class="nav-dropdown-container learn">
+  <a class="nav-link current">生态系统</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><h4>应用实例</h4></li>
+    <li>
+      <ul>
+        <li><a href="/application/syp-wxmp.html" class="nav-link">胜因学院<small>(小程序)</small></a></li>
+        <li><a href="/application/syp-android-tv.html" class="nav-link">胜因盒子<small>(TV大屏)</small></a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container learn">
+  <a class="nav-link current">开发文档</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><a href="/developer/guide.html" class="nav-link current">规范指南</a></li>
+    <li><h4>编程规范</h4></li>
+    <li>
+      <ul>
+        <li><a href="/developer/style-guide/gitlab.html" class="nav-link">Gitlab</a></li>
+        <li><a href="/developer/style-guide/java.html" class="nav-link">Java</a></li>
+        <li><a href="/developer/style-guide/mysql.html" class="nav-link">MySQL</a></li>
+        <li><a href="/developer/style-guide/javascript.html" class="nav-link">Javascript</a></li>
+        <li><a href="/developer/style-guide/cdn.html" class="nav-link">CDN 运维</a></li>
+      </ul>
+    </li>
+    <li><h4>开发规范</h4></li>
+    <li>
+      <ul>
+        <li><a href="/developer/environment-guide.html" class="nav-link">环境规范<small></small></a></li>
+        <li><a href="/developer/etl-devops-guide.html" class="nav-link">ETL 运维<small></small></a></li>
+        <li><a href="/developer/api-design-guide.html" class="nav-link">API 设计<small></small></a></li>
+        <li><a href="/developer/rdc-guide.html" class="nav-link">RDC 接口<small></small></a></li>
+        <li><a href="/developer/menu-guide.html" class="nav-link">业务菜单<small></small></a></li>
+      </ul>
+    </li>
+    <li><h4>接口文档</h4></li>
+    <li>
+      <ul>
+        <li><a href="/developer/api-guide/syp-wxmp.html" class="nav-link">胜因学院<small>(小程序)</small></a></li>
+        <li><a href="/developer/api-guide/datav-report.html" class="nav-link">DataV报表<small>(大屏)</small></a></li>
+        <li><a href="/developer/api-guide/java-admin-add-module.html" class="nav-link">添加模块<small>(运营平台)</small></a></li>
+      </ul>
+    </li>
+    <li><h4>项目源码</h4></li>
+    <li>
+      <ul>
+        <li><a href="/developer/project-connections.html" class="nav-link">源码体系</a></li>
+        <li><a href="/developer/sypctl-readme.html" class="nav-link">SypCtl 工具</a></li>
+        <li><a href="/developer/jenkins-deploy.html" class="nav-link">Jenkins 部署</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container learn">
+  <a class="nav-link current">企业文化</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><h4>职场培训</h4></li>
+    <li>
+      <ul>
+        <li><a href="/corporate-culture/workplace-ceremony.html" class="nav-link">职场共识</a></li>
+        <li><a href="/corporate-culture/teamwork.html" class="nav-link">职场协作</a></li>
+      </ul>
+    </li>
+    <li><h4>生命力</h4></li>
+    <li>
+      <ul>
+        <li><a href="/corporate-culture/online-documents.html" class="nav-link">在线文档</a></li>
+        <li><a href="/corporate-culture/weekly-publication.html" class="nav-link">胜因周刊</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="https://www.intfocus.com" target="_blank" class="nav-link team">官网</a>
+</li>
+
+    </ul>
+    <div class="list">
+      
+      
+        <h2>
+          
+          
+          
+        </h2>
+        <ul class="menu-root">
+  
+    
+    
+    <li>
+      <a href="/developer/style-guide/tips-to-keep-javascript-code-clean.html" class="sidebar-link current">整洁 Javascript 代码</a>
+    </li>
+  
+</ul>
+
+      
+    </div>
+  </div>
+</div>
+
+<!--
+<div id="sidebar-sponsors-platinum-right">
+  <div class="main-sponsor">
+    <span>白金赞助商</span>
+    <div>
+    <a href="https://bit.dev/?utm_source=vue&utm_medium=vue&utm_campaign=vue&utm_term=vue&utm_content=vue" target="_blank" class="logo">
+      <img src="/images/bit.png" alt="Bit">
+    </a>
+    <a href="http://tooltwist.com/" target="_blank" class="logo">
+      <img src="/images/tooltwist.png" alt="Tooltwist">
+    </a>
+    <a href="https://vueschool.io/?utm_source=Vuejs.org&utm_medium=Banner&utm_campaign=Sponsored%20Banner&utm_content=V1" target="_blank" class="logo">
+      <img src="/images/vueschool.png" alt="VueSchool">
+    </a>
+    <a href="https://vehikl.com/" target="_blank" class="logo">
+      <img src="/images/vehikl.png" alt="Vehikl">
+    </a>
+    <a href="https://www.nativescript.org/vue?utm_source=vue-js-org&utm_medium=website&utm_campaign=nativescript-awareness" target="_blank" class="logo">
+      <img src="/images/nativescript.png" alt="NativeScript">
+    </a>
+    <a href="https://teeplusplusclth.com/" target="_blank" class="logo">
+      <img src="/images/tee__.png" alt="Tee++">
+    </a>
+    </div>
+  </div>
+  <a class="become-backer" href="/support-vuejs">
+    成为赞助者
+  </a>
+</div>
+
+-->
+
+
+<div class="content 整洁 Javascript 代码 with-sidebar ">
+  
+    
+      
+    
+  
+  
+    <h1>整洁 Javascript 代码</h1>
+  
+
+  
+
+  
+    <h2 id="善用内置函数"><a href="#善用内置函数" class="headerlink" title="善用内置函数"></a>善用内置函数</h2><h3 id="find-findIndex"><a href="#find-findIndex" class="headerlink" title="find/findIndex"></a>find/findIndex</h3><p><em>冗余场景：</em></p>
+<pre><code class="hljs undefined">let array = [1, 2, 3, 4],
+    item,
+    index;
+
+// scene1
+for(let i = 0, len = array.length; i &lt; len; i ++) &#123;
+  if(array[i] &gt;= 1) &#123;
+    item = array[i];
+  &#125;
+&#125;
+// scene2
+for(let i = 0, len = array.length; i &lt; len; i ++) &#123;
+  if(array[i] &gt;= 3) &#123;
+    index = i;
+  &#125;
+&#125;
+// priority use a `for` when scene1 and scene2 meet</code></pre>
+<p><em>整洁方案：</em></p>
+<pre><code class="hljs undefined">item = array.find(function(ele) &#123; return ele &gt;= 1; &#125;)
+=&gt; 1
+index = array.findIndex(function(ele) &#123; return ele &gt;= 3; &#125;)
+=&gt; 2</code></pre>
+<h3 id="filter-some"><a href="#filter-some" class="headerlink" title="filter/some"></a>filter/some</h3><p><em>冗余场景：</em></p>
+<pre><code class="hljs undefined">let array = [1, 2, 3, 4],
+    filterArray = [],
+    isBetween2And4 = false;
+
+for(let i = 0, len = array.length; i &lt; len; i ++) &#123;
+  if(array[i] &gt;= 3) &#123;
+    filterArray.push(array[i])
+  &#125;
+  if(array[i] &gt; 2 &amp;&amp; array[i] &lt; 4) &#123;
+    isBetween2And4 = true
+  &#125;
+&#125;</code></pre>
+<p><em>整洁方案：</em></p>
+<pre><code class="hljs undefined">filterArray = array.filter(function(ele) &#123; return ele &gt;= 3; &#125;)
+=&gt; [3, 4]
+isBetween2And4 = array.some(function(ele) &#123; return ele &gt; 2 &amp;&amp; ele &lt; 4; &#125;)
+=&gt; true</code></pre>
+<h3 id="map"><a href="#map" class="headerlink" title="map"></a>map</h3><p><em>冗余场景：</em></p>
+<pre><code class="hljs undefined">let array = [1, 2, 3, 4],
+    newArray = [];
+
+for(let i = 0, len = array.length; i &lt; len; i ++) &#123;
+  newArray.push(array[i] * 2)
+&#125;</code></pre>
+<p><em>整洁方案：</em></p>
+<pre><code class="hljs undefined">newArray = array.map(function(ele) &#123; return ele * 2; &#125;)
+=&gt; [2, 4, 6, 8]</code></pre>
+<h3 id="reduce-reduceRight"><a href="#reduce-reduceRight" class="headerlink" title="reduce/reduceRight"></a>reduce/reduceRight</h3><p><em>冗余场景：</em></p>
+<pre><code class="hljs undefined">let array = [1, 2, 3, 4],
+    json = &#123;&#125;;
+
+for(let i = 0, len = array.length; i &lt; len; i ++) &#123;
+  json[i] = array[i]
+&#125;</code></pre>
+<p><em>整洁方案：</em></p>
+<pre><code class="hljs undefined">json = array.reduce(function(json, ele, inx, arr) &#123; json[inx] = ele; return json; &#125;, &#123;&#125;)
+=&gt; &#123;0: 1, 1: 2, 2: 3, 3: 4&#125;
+array.reduceRight(function(json, ele, inx, arr) &#123; console.log(ele); return json; &#125;, &#123;&#125;)
+=&gt; 4 3 2 1</code></pre>
+<h2 id="可检索的名称"><a href="#可检索的名称" class="headerlink" title="可检索的名称"></a>可检索的名称</h2><p>写可读性强、易于检索的的代码非常重要。</p>
+<p><em>冗余场景：</em></p>
+<pre><code class="hljs undefined">for (let i = 0; i &lt; 525600; i++) &#123;
+  runCronJob();
+&#125;</code></pre>
+<p><em>整洁方案：</em></p>
+<pre><code class="hljs undefined">// `let` 申明为大写的全局变量
+let MINUTES_IN_A_YEAR = 525600;
+for (let i = 0; i &lt; MINUTES_IN_A_YEAR; i++) &#123;
+  runCronJob();
+&#125;</code></pre>
+<h2 id="解析性的变量"><a href="#解析性的变量" class="headerlink" title="解析性的变量"></a>解析性的变量</h2><p><em>冗余场景：</em></p>
+<pre><code class="hljs undefined">const cityStateRegex = /^(.+)[,\\s]+(.+?)\s*(\d&#123;5&#125;)?$/;
+saveCityState(cityStateRegex.match(cityStateRegex)[1], cityStateRegex.match(cityStateRegex)[2]);</code></pre>
+<p><em>整洁方案：</em></p>
+<pre><code class="hljs undefined">const cityStateRegex = /^(.+)[,\\s]+(.+?)\s*(\d&#123;5&#125;)?$/,
+      match = cityStateRegex.match(cityStateRegex),
+      city = match[1],
+      state = match[2];
+
+saveCityState(city, state);</code></pre>
+<h2 id="显式优于隐式"><a href="#显式优于隐式" class="headerlink" title="显式优于隐式"></a>显式优于隐式</h2><p><em>晦涩场景：</em></p>
+<pre><code class="hljs undefined">let locations = [&apos;Austin&apos;, &apos;New York&apos;, &apos;San Francisco&apos;];
+locations.forEach((l) =&gt; &#123;
+  doStuff();
+  doSomeOtherStuff();
+  ...
+  ...
+  ...
+  // 等等，`l` 又是什么？
+  dispatch(l);
+&#125;);</code></pre>
+<p><em>整洁方案：</em></p>
+<pre><code class="hljs undefined">let locations = [&apos;Austin&apos;, &apos;New York&apos;, &apos;San Francisco&apos;];
+locations.forEach((location) =&gt; &#123;
+  doStuff();
+  doSomeOtherStuff();
+  ...
+  ...
+  ...
+  dispatch(location);
+&#125;);</code></pre>
+<h2 id="短路语法更清晰"><a href="#短路语法更清晰" class="headerlink" title="短路语法更清晰"></a>短路语法更清晰</h2><p><em>冗余场景：</em></p>
+<pre><code class="hljs undefined">function createMicrobrewery(name) &#123;
+  let breweryName;
+  if (name) &#123;
+    breweryName = name;
+  &#125; else &#123;
+    breweryName = &apos;Hipster Brew Co.&apos;;
+  &#125;
+&#125;</code></pre>
+<p><em>整洁方案：</em></p>
+<pre><code class="hljs undefined">function createMicrobrewery(name) &#123;
+  let breweryName = name || &apos;Hipster Brew Co.&apos;
+&#125;</code></pre>
+<h2 id="函数参数不多于2"><a href="#函数参数不多于2" class="headerlink" title="函数参数不多于2"></a>函数参数不多于2</h2><p><em>冗余场景：</em></p>
+<pre><code class="hljs undefined">function createMenu(title, body, buttonText, cancellable) &#123;
+  ...
+&#125;</code></pre>
+<p><em>整洁方案：</em></p>
+<pre><code class="hljs undefined">let menuConfig = &#123;
+  title: &apos;Foo&apos;,
+  body: &apos;Bar&apos;,
+  buttonText: &apos;Baz&apos;,
+  cancellable: true
+&#125;
+ 
+function createMenu(menuConfig) &#123;
+  ...
+&#125;</code></pre>
+<h2 id="一个函数专注一件事"><a href="#一个函数专注一件事" class="headerlink" title="一个函数专注一件事"></a>一个函数专注一件事</h2><p><em>冗余场景：</em></p>
+<pre><code class="hljs undefined">function emailClients(clients) &#123;
+  clients.forEach(client =&gt; &#123;
+    let clientRecord = database.lookup(client);
+    if (clientRecord.isActive()) &#123;
+      email(client);
+    &#125;
+  &#125;);
+&#125;</code></pre>
+<p><em>整洁方案：</em></p>
+<pre><code class="hljs undefined">function emailClients(clients) &#123;
+  clients.forEach(client =&gt; &#123;
+    emailClientIfNeeded(client);
+  &#125;);
+&#125;
+ 
+function emailClientIfNeeded(client) &#123;
+  if (isClientActive(client)) &#123;
+    email(client);
+  &#125;
+&#125;
+ 
+function isClientActive(client) &#123;
+  let clientRecord = database.lookup(client);
+  return clientRecord.isActive();
+&#125;</code></pre>
+<h2 id="函数名称见名知义"><a href="#函数名称见名知义" class="headerlink" title="函数名称见名知义"></a>函数名称见名知义</h2><p><em>晦涩场景：</em></p>
+<pre><code class="hljs undefined">function dateAdd(date, month) &#123;
+  // ...
+&#125;
+
+let date = new Date();
+dateAdd(date, 1);</code></pre>
+<p><em>整洁方案：</em></p>
+<pre><code class="hljs undefined">function dateAddMonth(date, month) &#123;
+  // ...
+&#125;
+
+let date = new Date();
+dateAddMonth(date, 1);</code></pre>
+<h2 id="函数只抽象一个层次"><a href="#函数只抽象一个层次" class="headerlink" title="函数只抽象一个层次"></a>函数只抽象一个层次</h2><p>整洁理念: 拆分函数使其易于复用和易于测试</p>
+<p><em>冗余场景：</em></p>
+<pre><code class="hljs undefined">function parseBetterJSAlternative(code) &#123;
+  let REGEXES = [...],
+      statements = code.split(&apos; &apos;),
+      tokens;
+  REGEXES.forEach((REGEX) =&gt; &#123;
+    statements.forEach((statement) =&gt; &#123;
+      // ...
+    &#125;)
+  &#125;);
+
+  let ast;
+  tokens.forEach((token) =&gt; &#123;
+    // lex...
+  &#125;);
+
+  ast.forEach((node) =&gt; &#123;
+    // parse...
+  &#125;)
+&#125;</code></pre>
+<p><em>整洁方案：</em></p>
+<pre><code class="hljs undefined">function tokenize(code) &#123;
+  let REGEXES = [...],
+      statements = code.split(&apos; &apos;),
+      tokens;
+  REGEXES.forEach((REGEX) =&gt; &#123;
+    statements.forEach((statement) =&gt; &#123;
+      // ...
+    &#125;)
+  &#125;);
+
+  return tokens;
+&#125;
+ 
+function lexer(tokens) &#123;
+  let ast;
+  tokens.forEach((token) =&gt; &#123;
+    // lex...
+  &#125;);
+
+  return ast;
+&#125;
+ 
+function parseBetterJSAlternative(code) &#123;
+  let tokens = tokenize(code);
+  let ast = lexer(tokens);
+  ast.forEach((node) =&gt; &#123;
+    // parse...
+  &#125;)
+&#125;</code></pre>
+<h2 id="删除重复代码"><a href="#删除重复代码" class="headerlink" title="删除重复代码"></a>删除重复代码</h2><p>JavaScript 是弱类型语句，所以很容易写通用性强的函数</p>
+<p><em>冗余场景：</em></p>
+<pre><code class="hljs undefined">function showDeveloperList(developers) &#123;
+  developers.forEach(developers =&gt; &#123;
+    let expectedSalary = developer.calculateExpectedSalary();
+    let experience = developer.getExperience();
+    let githubLink = developer.getGithubLink();
+    let data = &#123;
+      expectedSalary: expectedSalary,
+      experience: experience,
+      githubLink: githubLink
+    &#125;;
+
+    render(data);
+  &#125;);
+&#125;
+
+function showManagerList(managers) &#123;
+  managers.forEach(manager =&gt; &#123;
+    let expectedSalary = manager.calculateExpectedSalary();
+    let experience = manager.getExperience();
+    let portfolio = manager.getMBAProjects();
+    let data = &#123;
+      expectedSalary: expectedSalary,
+      experience: experience,
+      portfolio: portfolio
+    &#125;;
+
+    render(data);
+  &#125;);
+&#125;</code></pre>
+<p><em>整洁方案：</em></p>
+<pre><code class="hljs undefined">function showList(employees) &#123;
+  employees.forEach(employee =&gt; &#123;
+    let expectedSalary = employee.calculateExpectedSalary(),
+        experience = employee.getExperience(),
+        portfolio;
+
+    if (employee.type === &apos;manager&apos;) &#123;
+      portfolio = employee.getMBAProjects();
+    &#125; else &#123;
+      portfolio = employee.getGithubLink();
+    &#125;
+
+    let data = &#123;
+      expectedSalary: expectedSalary,
+      experience: experience,
+      portfolio: portfolio
+    &#125;;
+
+    render(data);
+  &#125;);
+&#125;</code></pre>
+<h2 id="默认参数-amp-短路语法"><a href="#默认参数-amp-短路语法" class="headerlink" title="默认参数&amp;短路语法"></a>默认参数&amp;短路语法</h2><p><em>冗余场景：</em></p>
+<pre><code class="hljs undefined">function writeForumComment(subject, body) &#123;
+  subject = subject || &apos;No Subject&apos;;
+  body = body || &apos;No text&apos;;
+&#125;</code></pre>
+<p><em>整洁方案：</em></p>
+<pre><code class="hljs undefined">function writeForumComment(subject = &apos;No subject&apos;, body = &apos;No text&apos;) &#123;
+  ...
+&#125;</code></pre>
+<h2 id="Object-assign-用法"><a href="#Object-assign-用法" class="headerlink" title="Object.assign 用法"></a><code>Object.assign</code> 用法</h2><p><em>冗余场景：</em></p>
+<pre><code class="hljs undefined">let menuConfig = &#123;
+  title: null,
+  body: &apos;Bar&apos;,
+  buttonText: null,
+  cancellable: true
+&#125;
+ 
+function createMenu(config) &#123;
+  config.title = config.title || &apos;Foo&apos;
+  config.body = config.body || &apos;Bar&apos;
+  config.buttonText = config.buttonText || &apos;Baz&apos;
+  config.cancellable = config.cancellable === undefined ? config.cancellable : true;
+&#125;
+ 
+createMenu(menuConfig);</code></pre>
+<p><em>整洁方案：</em></p>
+<pre><code class="hljs undefined">let menuConfig = &#123;
+  title: &apos;Order&apos;,
+  buttonText: &apos;Send&apos;,
+  cancellable: true
+&#125;
+ 
+function createMenu(config) &#123;
+ config = Object.assign(&#123;
+     title: &apos;Foo&apos;,
+     body: &apos;Bar&apos;,
+     buttonText: &apos;Baz&apos;,
+     cancellable: true
+   &#125;, config);
+&#125;
+ 
+createMenu(menuConfig);</code></pre>
+<h2 id="不要写入全局函数"><a href="#不要写入全局函数" class="headerlink" title="不要写入全局函数"></a>不要写入全局函数</h2><p><em>冗余场景：</em></p>
+<pre><code class="hljs undefined">Array.prototype.diff = function(comparisonArray) &#123;
+  let values = [];
+  let hash = &#123;&#125;;
+
+  for (let i of comparisonArray) &#123;
+    hash[i] = true;
+  &#125;
+
+  for (let i of this) &#123;
+    if (!hash[i]) &#123;
+      values.push(i);
+    &#125;
+  &#125;
+
+  return values;
+&#125;</code></pre>
+<p><em>整洁方案：</em></p>
+<pre><code class="hljs undefined">class SuperArray extends Array &#123;
+  constructor(...args) &#123;
+    super(...args);
+  &#125;
+
+  diff(comparisonArray) &#123;
+    let values = [];
+    let hash = &#123;&#125;;
+
+    for (let i of comparisonArray) &#123;
+      hash[i] = true;
+    &#125;
+
+    for (let i of this) &#123;
+      if (!hash[i]) &#123;
+        values.push(i);
+      &#125;
+    &#125;
+
+    return values;
+  &#125;
+&#125;</code></pre>
+<h2 id="函数式编程"><a href="#函数式编程" class="headerlink" title="函数式编程"></a>函数式编程</h2><p><em>冗余场景：</em></p>
+<pre><code class="hljs undefined">const programmerOutput = [
+  &#123;
+    name: &apos;Uncle Bobby&apos;,
+    linesOfCode: 500
+  &#125;, &#123;
+    name: &apos;Suzie Q&apos;,
+    linesOfCode: 1500
+  &#125;, &#123;
+    name: &apos;Jimmy Gosling&apos;,
+    linesOfCode: 150
+  &#125;, &#123;
+    name: &apos;Gracie Hopper&apos;,
+    linesOfCode: 1000
+  &#125;
+];
+ 
+let totalOutput = 0;
+for (let i = 0; i &lt; programmerOutput.length; i++) &#123;
+  totalOutput += programmerOutput[i].linesOfCode;
+&#125;</code></pre>
+<p><em>整洁方案：</em></p>
+<pre><code class="hljs undefined">const programmerOutput = [
+  &#123;
+    name: &apos;Uncle Bobby&apos;,
+    linesOfCode: 500
+  &#125;, &#123;
+    name: &apos;Suzie Q&apos;,
+    linesOfCode: 1500
+  &#125;, &#123;
+    name: &apos;Jimmy Gosling&apos;,
+    linesOfCode: 150
+  &#125;, &#123;
+    name: &apos;Gracie Hopper&apos;,
+    linesOfCode: 1000
+  &#125;
+];
+ 
+ 
+let totalOutput = programmerOutput
+  .map((programmer) =&gt; programmer.linesOfCode)
+  .reduce((acc, linesOfCode) =&gt; acc + linesOfCode, 0);</code></pre>
+<h2 id="封装条件"><a href="#封装条件" class="headerlink" title="封装条件"></a>封装条件</h2><p><em>冗余场景：</em></p>
+<pre><code class="hljs undefined">if (fsm.state === &apos;fetching&apos; &amp;&amp; isEmpty(listNode)) &#123;
+  // ...
+&#125;</code></pre>
+<p><em>整洁方案：</em></p>
+<pre><code class="hljs undefined">function shouldShowSpinner(fsm, listNode) &#123;
+  return fsm.state === &apos;fetching&apos; &amp;&amp; isEmpty(listNode);
+&#125;
+ 
+if (shouldShowSpinner(fsmInstance, listNodeInstance)) &#123;
+  // ...
+&#125;</code></pre>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a href="https://www.jb51.net/article/149355.htm" target="_blank" rel="noopener">浅谈JavaScript 代码整洁之道</a></li>
+</ul>
+
+  
+  
+  <div class="footer" style="display:none;">
+      <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+<div class="bsa-cpc"></div>
+<script>
+  (function(){
+    if(typeof _bsa !== 'undefined' && _bsa) {
+    _bsa.init('default', 'CKYD62QM', 'placement:vuejsorg', {
+      target: '.bsa-cpc',
+      align: 'horizontal',
+      disable_css: 'true'
+    });
+      }
+  })();
+</script>
+
+    发现错误？想参与编辑？
+    <a href="https://github.com/vuejs/cn.vuejs.org/blob/master/src/developer/style-guide/tips-to-keep-javascript-code-clean.md" target="_blank">
+      在 GitHub 上编辑此页！
+    </a>
+  </div>
+</div>
+
+        
+      </div>
+      <script src="/js/smooth-scroll.min.js"></script>
+    
+
+    <!-- main custom script for sidebars, version selects etc. -->
+    <script src="/js/css.escape.js"></script>
+    <script src="/js/common.js"></script>
+
+    <!-- search -->
+    <link href="//code.bdstatic.com/npm/docsearch.js@1.5.0/dist/cdn/docsearch.min.css" rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/css/search.css">
+    <script src="//code.bdstatic.com/npm/docsearch.js@1.5.0/dist/cdn/docsearch.min.js"></script>
+    <script>
+    [
+      '#search-query-nav',
+      '#search-query-sidebar',
+      '#search-query-menu'
+    ].forEach(function (selector) {
+      if (!document.querySelector(selector)) return
+      // search index defaults to v2
+      var match = window.location.pathname.match(/^\/(v\d+)/)
+      var version = match ? match[1] : 'v2'
+      docsearch({
+      appId: 'BH4D9OD16A',
+      apiKey: '5638280abff9d207417bb03be05f0b25',
+      indexName: 'vuejs_cn2',
+      inputSelector: selector,
+      algoliaOptions: { facetFilters: ["version:" + version] },
+      autocompleteOptions: { hint: false, appendTo: 'body'}
+      })
+    })
+    </script>
+
+    <!-- fastclick -->
+    <script src="//code.bdstatic.com/npm/fastclick@1.0.6/lib/fastclick.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      FastClick.attach(document.body)
+    }, false)
+    </script>
+  </body>
+</html>

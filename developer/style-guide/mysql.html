@@ -1,0 +1,649 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <title>MySQL 编程规范 — 胜因学院</title>
+    <meta charset="utf-8">
+    <meta name="description" content="Vue.js - The Progressive JavaScript Framework">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="MySQL 编程规范 — Vue.js">
+    <meta property="og:description" content="Vue.js - The Progressive JavaScript Framework">
+    <meta property="og:image" content="https://cn.vuejs.org//images/logo.png">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="MySQL 编程规范 — Vue.js">
+    <meta name="twitter:description" content="Vue.js - The Progressive JavaScript Framework">
+    <meta name="twitter:image" content="https://cn.vuejs.org/images/logo.png">
+
+    <link rel="icon" href="/images/intfocus.png" type="image/png">
+
+    <meta name="msapplication-TileColor" content="#4fc08d">
+    <meta name="theme-color" content="#4fc08d">
+
+    <meta name="msapplication-config" content="browserconfig.xml">
+    <link rel="manifest" href="/manifest.json">
+
+    <!-- <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Roboto Mono' rel='stylesheet' type='text/css'> -->
+    <!-- <link href='//fonts.googleapis.com/css?family=Dosis:500&text=Vue.js' rel='stylesheet' type='text/css'> -->
+
+    <link href="//code.bdstatic.com/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- main page styles -->
+    <link rel="stylesheet" href="/css/page.css">
+
+    <!-- this needs to be loaded before guide's inline scripts -->
+    <script src="/js/vue.js"></script>
+    <script>
+      Vue.config.productionTip = false
+      window.PAGE_TYPE = "MySQL 编程规范"
+    </script>
+  </head>
+  <body class="docs">
+    <div id="mobile-bar" >
+      <a class="menu-button"></a>
+      <a class="logo" href="/"></a>
+    </div>
+    <div id="header">
+  <a id="logo" href="/">
+    <img src="/images/logo.png" alt="vue logo">
+    <span>Intfocus</span>
+  </a>
+  <ul id="nav">
+    <li>
+  <form id="search-form">
+    <input type="text" id="search-query-nav" class="search-query st-default-search-input">
+  </form>
+</li>
+<li class="nav-dropdown-container learn">
+  <a class="nav-link current">生态系统</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><h4>应用实例</h4></li>
+    <li>
+      <ul>
+        <li><a href="/application/syp-wxmp.html" class="nav-link">胜因学院<small>(小程序)</small></a></li>
+        <li><a href="/application/syp-android-tv.html" class="nav-link">胜因盒子<small>(TV大屏)</small></a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container learn">
+  <a class="nav-link current">开发文档</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><a href="/developer/guide.html" class="nav-link current">规范指南</a></li>
+    <li><h4>编程规范</h4></li>
+    <li>
+      <ul>
+        <li><a href="/developer/style-guide/gitlab.html" class="nav-link">Gitlab</a></li>
+        <li><a href="/developer/style-guide/java.html" class="nav-link">Java</a></li>
+        <li><a href="/developer/style-guide/mysql.html" class="nav-link current">MySQL</a></li>
+        <li><a href="/developer/style-guide/javascript.html" class="nav-link">Javascript</a></li>
+        <li><a href="/developer/style-guide/cdn.html" class="nav-link">CDN 运维</a></li>
+      </ul>
+    </li>
+    <li><h4>开发规范</h4></li>
+    <li>
+      <ul>
+        <li><a href="/developer/environment-guide.html" class="nav-link">环境规范<small></small></a></li>
+        <li><a href="/developer/etl-devops-guide.html" class="nav-link">ETL 运维<small></small></a></li>
+        <li><a href="/developer/api-design-guide.html" class="nav-link">API 设计<small></small></a></li>
+        <li><a href="/developer/rdc-guide.html" class="nav-link">RDC 接口<small></small></a></li>
+        <li><a href="/developer/menu-guide.html" class="nav-link">业务菜单<small></small></a></li>
+      </ul>
+    </li>
+    <li><h4>接口文档</h4></li>
+    <li>
+      <ul>
+        <li><a href="/developer/api-guide/syp-wxmp.html" class="nav-link">胜因学院<small>(小程序)</small></a></li>
+        <li><a href="/developer/api-guide/datav-report.html" class="nav-link">DataV报表<small>(大屏)</small></a></li>
+        <li><a href="/developer/api-guide/java-admin-add-module.html" class="nav-link">添加模块<small>(运营平台)</small></a></li>
+      </ul>
+    </li>
+    <li><h4>项目源码</h4></li>
+    <li>
+      <ul>
+        <li><a href="/developer/project-connections.html" class="nav-link">源码体系</a></li>
+        <li><a href="/developer/sypctl-readme.html" class="nav-link">SypCtl 工具</a></li>
+        <li><a href="/developer/jenkins-deploy.html" class="nav-link">Jenkins 部署</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container learn">
+  <a class="nav-link current">企业文化</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><h4>职场培训</h4></li>
+    <li>
+      <ul>
+        <li><a href="/corporate-culture/workplace-ceremony.html" class="nav-link">职场共识</a></li>
+        <li><a href="/corporate-culture/teamwork.html" class="nav-link">职场协作</a></li>
+      </ul>
+    </li>
+    <li><h4>生命力</h4></li>
+    <li>
+      <ul>
+        <li><a href="/corporate-culture/online-documents.html" class="nav-link">在线文档</a></li>
+        <li><a href="/corporate-culture/weekly-publication.html" class="nav-link">胜因周刊</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="https://www.intfocus.com" target="_blank" class="nav-link team">官网</a>
+</li>
+
+  </ul>
+</div>
+
+    
+    
+      <div id="main" class="fix-sidebar">
+        
+          
+  <div class="sidebar">
+  <div class="sidebar-inner">
+    <ul class="main-menu">
+      <li>
+  <form id="search-form">
+    <input type="text" id="search-query-sidebar" class="search-query st-default-search-input">
+  </form>
+</li>
+<li class="nav-dropdown-container learn">
+  <a class="nav-link current">生态系统</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><h4>应用实例</h4></li>
+    <li>
+      <ul>
+        <li><a href="/application/syp-wxmp.html" class="nav-link">胜因学院<small>(小程序)</small></a></li>
+        <li><a href="/application/syp-android-tv.html" class="nav-link">胜因盒子<small>(TV大屏)</small></a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container learn">
+  <a class="nav-link current">开发文档</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><a href="/developer/guide.html" class="nav-link current">规范指南</a></li>
+    <li><h4>编程规范</h4></li>
+    <li>
+      <ul>
+        <li><a href="/developer/style-guide/gitlab.html" class="nav-link">Gitlab</a></li>
+        <li><a href="/developer/style-guide/java.html" class="nav-link">Java</a></li>
+        <li><a href="/developer/style-guide/mysql.html" class="nav-link current">MySQL</a></li>
+        <li><a href="/developer/style-guide/javascript.html" class="nav-link">Javascript</a></li>
+        <li><a href="/developer/style-guide/cdn.html" class="nav-link">CDN 运维</a></li>
+      </ul>
+    </li>
+    <li><h4>开发规范</h4></li>
+    <li>
+      <ul>
+        <li><a href="/developer/environment-guide.html" class="nav-link">环境规范<small></small></a></li>
+        <li><a href="/developer/etl-devops-guide.html" class="nav-link">ETL 运维<small></small></a></li>
+        <li><a href="/developer/api-design-guide.html" class="nav-link">API 设计<small></small></a></li>
+        <li><a href="/developer/rdc-guide.html" class="nav-link">RDC 接口<small></small></a></li>
+        <li><a href="/developer/menu-guide.html" class="nav-link">业务菜单<small></small></a></li>
+      </ul>
+    </li>
+    <li><h4>接口文档</h4></li>
+    <li>
+      <ul>
+        <li><a href="/developer/api-guide/syp-wxmp.html" class="nav-link">胜因学院<small>(小程序)</small></a></li>
+        <li><a href="/developer/api-guide/datav-report.html" class="nav-link">DataV报表<small>(大屏)</small></a></li>
+        <li><a href="/developer/api-guide/java-admin-add-module.html" class="nav-link">添加模块<small>(运营平台)</small></a></li>
+      </ul>
+    </li>
+    <li><h4>项目源码</h4></li>
+    <li>
+      <ul>
+        <li><a href="/developer/project-connections.html" class="nav-link">源码体系</a></li>
+        <li><a href="/developer/sypctl-readme.html" class="nav-link">SypCtl 工具</a></li>
+        <li><a href="/developer/jenkins-deploy.html" class="nav-link">Jenkins 部署</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container learn">
+  <a class="nav-link current">企业文化</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><h4>职场培训</h4></li>
+    <li>
+      <ul>
+        <li><a href="/corporate-culture/workplace-ceremony.html" class="nav-link">职场共识</a></li>
+        <li><a href="/corporate-culture/teamwork.html" class="nav-link">职场协作</a></li>
+      </ul>
+    </li>
+    <li><h4>生命力</h4></li>
+    <li>
+      <ul>
+        <li><a href="/corporate-culture/online-documents.html" class="nav-link">在线文档</a></li>
+        <li><a href="/corporate-culture/weekly-publication.html" class="nav-link">胜因周刊</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="https://www.intfocus.com" target="_blank" class="nav-link team">官网</a>
+</li>
+
+    </ul>
+    <div class="list">
+      
+      
+        <h2>
+          
+          
+          
+        </h2>
+        <ul class="menu-root">
+  
+    
+    
+    <li>
+      <a href="/developer/style-guide/mysql.html" class="sidebar-link current">MySQL 编程规范</a>
+    </li>
+  
+</ul>
+
+      
+    </div>
+  </div>
+</div>
+
+<!--
+<div id="sidebar-sponsors-platinum-right">
+  <div class="main-sponsor">
+    <span>白金赞助商</span>
+    <div>
+    <a href="https://bit.dev/?utm_source=vue&utm_medium=vue&utm_campaign=vue&utm_term=vue&utm_content=vue" target="_blank" class="logo">
+      <img src="/images/bit.png" alt="Bit">
+    </a>
+    <a href="http://tooltwist.com/" target="_blank" class="logo">
+      <img src="/images/tooltwist.png" alt="Tooltwist">
+    </a>
+    <a href="https://vueschool.io/?utm_source=Vuejs.org&utm_medium=Banner&utm_campaign=Sponsored%20Banner&utm_content=V1" target="_blank" class="logo">
+      <img src="/images/vueschool.png" alt="VueSchool">
+    </a>
+    <a href="https://vehikl.com/" target="_blank" class="logo">
+      <img src="/images/vehikl.png" alt="Vehikl">
+    </a>
+    <a href="https://www.nativescript.org/vue?utm_source=vue-js-org&utm_medium=website&utm_campaign=nativescript-awareness" target="_blank" class="logo">
+      <img src="/images/nativescript.png" alt="NativeScript">
+    </a>
+    <a href="https://teeplusplusclth.com/" target="_blank" class="logo">
+      <img src="/images/tee__.png" alt="Tee++">
+    </a>
+    </div>
+  </div>
+  <a class="become-backer" href="/support-vuejs">
+    成为赞助者
+  </a>
+</div>
+
+-->
+
+
+<div class="content MySQL 编程规范 with-sidebar ">
+  
+    
+      
+    
+  
+  
+    <h1>MySQL 编程规范</h1>
+  
+
+  
+
+  
+    <h2 id="审核规范"><a href="#审核规范" class="headerlink" title="审核规范"></a>审核规范</h2><ul>
+<li><a href="https://gitlab.idata.mobi/shengyiplus/syp-model-scripts" target="_blank" rel="noopener">数据库运维脚本</a>, 向 DBA 审核开发权限。</li>
+<li>表结构变更 DBA 审核未通过的，不允许上线。</li>
+<li>运维 SQL 脚本必须本地执行成功才能提交合并，由 DBA 部署运维脚本。</li>
+</ul>
+<h2 id="基础规范"><a href="#基础规范" class="headerlink" title="基础规范"></a>基础规范</h2><ul>
+<li>库名/表名/字段名统一<strong>小写</strong>。</li>
+<li>库名/表名/字段名<strong>注释</strong>业务场景。</li>
+<li>库名/表名/字段名禁止使用 <code>mysql</code> 保留字。 </li>
+<li>库名/表名/字段名小写字母、见名知意、下划线命名。</li>
+<li>数据对象/变量命名采用英文字符,禁止中文命名。</li>
+<li>临时库/表名必须以 <code>tmp</code> 为前缀，并以日期为后缀。</li>
+<li>备份库/表必须以 <code>bak</code> 为前缀，并以日期为后缀。</li>
+<li>禁止明文存储密码。 </li>
+<li>禁止跨库访问数据。</li>
+</ul>
+<h2 id="表设计规范"><a href="#表设计规范" class="headerlink" title="表设计规范"></a>表设计规范</h2><h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><p>表类型:</p>
+<ul>
+<li><strong>实体表</strong>: 客观存在的事物数据，比如说员工。</li>
+<li><strong>事实表</strong>: 通过各种维度和指标值组合确定的一个事实，比如通过时间、地域组织维度，指标值可以确定在某时某地的一些指标值怎么样的事实。事实表的每一条数据都是几条维度表的数据和指标值交汇而得到的。</li>
+<li><strong>维度表</strong>: 对事实的各个方面描述，比如时间维度表；维度表只能是事实表的一个分析角度。</li>
+</ul>
+<p>术语:</p>
+<ul>
+<li><strong>关系</strong>: 实体表之间的联系</li>
+<li><strong>元组</strong>: 表的一行</li>
+<li><strong>属性</strong>: 表的一列</li>
+<li><strong>键(码)</strong>: 唯一标识元组的最小属性集</li>
+<li><strong>候选码</strong>: 二维表会存在多个键(码)统称为候选键(码), 从中选择一个作为用户使用的键称为<strong>主键</strong></li>
+</ul>
+<h3 id="范式定义"><a href="#范式定义" class="headerlink" title="范式定义"></a>范式定义</h3><ul>
+<li>第一范式：对<strong>属性</strong>的原子性约束，不可再分解；</li>
+<li>第二范式：对<strong>元组(记录)</strong>的惟一性约束，即实体的惟一性；</li>
+<li>第三范式：对字段冗余性的约束，即任何字段不能由其他字段派生出来。</li>
+<li>巴斯-科德范式（BCNF）: 每个表中只有一个候选键</li>
+<li>第四范式: 消除表中的多值依赖。</li>
+</ul>
+<p>注意：落地到第三范式就已够用了，后面的太严格，不符合实际使用。必要的空余（预计算列）可以提升查询效率（以空间换时间）。</p>
+<h3 id="E-R图规范"><a href="#E-R图规范" class="headerlink" title="E-R图规范"></a>E-R图规范</h3><p>结构清晰、关联简洁、实体个数适中、属性分配合理、没有低级冗余。</p>
+<p><em>注</em>: <a href="/developer/style-guide/mysql.html#功能文档">功能文档</a>中会使用到 E-R 图，并约束上述规范。</p>
+<h3 id="完整性约束"><a href="#完整性约束" class="headerlink" title="完整性约束"></a>完整性约束</h3><ul>
+<li>域的完整性：用Check来实现约束</li>
+<li>参照完整性：用PK、FK、表级触发器来实现。</li>
+<li>用户定义完整性：是业务规则，用存储过程和触发器来实现。</li>
+</ul>
+<h3 id="三少原则"><a href="#三少原则" class="headerlink" title="三少原则"></a>三少原则</h3><ul>
+<li>数据库中表的个数越少越好</li>
+<li>表中组合主键的字段个数越少越好</li>
+<li>表中的字段个数越少越好</li>
+</ul>
+<p>数据库设计的实用原则是：<strong>在数据冗余和处理速度之间找到合适的平衡点。</strong></p>
+<p>“三少”是一个<strong>整体概念，综合观点</strong>，不能孤立某一个原则。该原则是相对的，不是绝对的。</p>
+<p>提倡“三少”原则的目的，是<strong>防止利用打补丁技术，不断地对数据库进行增删改</strong>，使企业数据库变成了随意设计数据库表的“垃圾堆”，或数据库表的“大杂院”，最后造成数据库中的基本表、代码表、中间表、临时表杂乱无章，不计其数，导致企事业单位的信息系统无法维护而瘫痪。</p>
+<h3 id="通用原则"><a href="#通用原则" class="headerlink" title="通用原则"></a>通用原则</h3><ul>
+<li>表名使用复数(后缀 <code>s</code>)。</li>
+<li>推荐 <code>utf8mb4</code>。<code>utf8mb4</code> 是真正意义上的 <code>utf-8</code>。</li>
+<li>必须有主键，使用<code>id</code> 自增列作主键；再创建 <code>uuid</code> 字段，作为业务主键。</li>
+<li>存储状态、性别等，用 <code>tinyint(1)</code>，慎用 <code>enum</code>。</li>
+<li>日期字段，类型使用 <code>date</code>，<code>xxx_date</code>命名。</li>
+<li>时间字段，类型使用 <code>datetime</code> ，<code>xxx_datetime</code>命名。</li>
+<li>价格等小数类型使用 <code>decimal(10, 2)</code>。</li>
+<li>同一意义的字段设计定义必须相同（便于联表查询）</li>
+<li>表与表之间需要建立关联关系时使用 <code>uuid</code> 关联。</li>
+<li>禁止 <code>default null</code>，建议 <code>not null</code>。</li>
+<li><p>表设计时基础字段</p>
+<pre><code class="hljs undefined">create table mysql_guides s(
+  `id` int(11) not null auto_increment,
+  `uuid` varchar(50) not null comment &apos;uuid&apos;,
+  ...
+  `delete_status` tinyint(1) default 0 comment &apos;删除状态, 0/1&apos;,
+  `created_time` datetime default current_timestamp comment &apos;创建时间&apos;,
+  `updated_time` datetime default current_timestamp on update current_timestamp comment &apos;更新时间&apos;,
+  primary key(id)
+)</code></pre>
+</li>
+</ul>
+<h3 id="datetime-amp-timestamp"><a href="#datetime-amp-timestamp" class="headerlink" title="datetime &amp; timestamp"></a><code>datetime</code> &amp; <code>timestamp</code></h3><h2 id="索引设计"><a href="#索引设计" class="headerlink" title="索引设计"></a>索引设计</h2><ul>
+<li>唯一索引命名 <code>uniq_字段1_字段2</code>，非唯一索引命名 <code>idx_字段1_字段2</code>。</li>
+<li>建立索引时，务必先 <code>explain</code>，查看索引使用情况；禁止冗余索引；禁止重复索引。</li>
+<li>重要的 SQL 中 <code>where</code> 条件里的字段必须被索引。</li>
+<li>不在低基数列上建立索引，例如“性别”。</li>
+<li>不要在频繁更新的列上建立索引。</li>
+<li>不在索引列进行数学运算和函数运算（参与了运算的列不会引用索引）</li>
+<li>复合索引须符合最左前缀的特点建立索引（MySQL 使用复合索引时从左向右匹配）</li>
+</ul>
+<h2 id="SQL-规范"><a href="#SQL-规范" class="headerlink" title="SQL 规范"></a>SQL 规范</h2><ul>
+<li>建议 SQL 语句小写，包括 SQL 关键字、保留字。</li>
+<li><code>select</code> <code>from</code> <code>left join</code> <code>right join</code> <code>inner join</code> <code>where</code> <code>group by</code> <code>order by</code> <code>limit</code> 左对齐</li>
+<li>右缩进为两个空格。</li>
+<li><code>join</code> 与 <code>on</code> 在同一行。</li>
+<li>SQL 代码段之间<strong>空一行</strong>。</li>
+<li><strong>鼓励添加简洁的注释，增加代码阅读性</strong>。</li>
+<li><p>单字段赋值, 必须 <code>limit 1</code>。</p>
+<pre><code class="hljs undefined">use mysql;
+
+-- 高版本 MySQL 约束强，没有显式 limit 1 直接抛语法错误
+set @user = (
+  select `User` 
+  from user
+  limit 1
+);
+
+select convert(@user using utf8) as user;</code></pre>
+</li>
+<li><p>多字段赋值, 使用一条 <code>select</code>。</p>
+<pre><code class="hljs undefined">use mysql;
+
+-- 本质是使用最后一行结果集赋值
+-- 1. 若 limit 2，赋值的是第二行结果集
+-- 2. `:=` 是赋值, `=` 是比较
+select 
+  @host := `Host`,
+  @user := `User` 
+from user
+limit 1;
+
+select 
+  convert(@host using utf8) as host, 
+  convert(@user using utf8) as user;</code></pre>
+<p>或</p>
+<pre><code class="hljs undefined">use mysql;
+
+select 
+  `Host`, `User` into @host, @user 
+from user
+limit 1;
+
+select 
+  convert(@host using utf8) as host, 
+  convert(@user using utf8) as user;</code></pre>
+</li>
+<li><p>事务(<code>transaction</code>)与 ACID</p>
+<pre><code class="hljs undefined">drop procedure if exists `pro_sql_acid_example`;
+delimiter ;;
+create procedure `pro_sql_acid_example`()
+begin
+  declare is_sql_error integer default 0;
+  declare continue handler for sqlexception set is_sql_error = 1;
+  start transaction;
+
+  -- 业务SQL, CRUD 语法错误时，取消本次所有数据操作
+  -- 业务SQL一切正常，此处返回结果集
+
+  if is_sql_error = 1 then
+    rollback;
+    select &apos;rollback with sql exception&apos;;
+    -- 根据业务需要，返回对应的内容
+  else
+    commit;
+    -- 此时仅 commit, 避免查询结果集语句出错
+  end if;
+end
+;;
+delimiter ;
+
+call pro_sql_acid_example();</code></pre>
+</li>
+</ul>
+<h2 id="查询规范"><a href="#查询规范" class="headerlink" title="查询规范"></a>查询规范</h2><ul>
+<li>拆分复杂 SQL 为多个小 SQL，或创建汇总中间表（利用 <code>query cache</code>和多核 <code>cpu</code>）。</li>
+<li>用 <code>in</code> 代替 <code>or</code>。<code>in</code> 的个数控制在 1000 以内。</li>
+<li>不使用负向查询，如<code>not in</code>/<code>like</code>。</li>
+<li>用<code>union all</code>代替<code>union</code>；<code>union all</code>不需要对结果集再进行排序。</li>
+<li>禁止使用 <code>order by rand()</code>。 </li>
+<li><code>select</code>、<code>insert</code>语句必须显式的指明字段名称。</li>
+<li><code>where</code> 条件中的非等值条件（<code>in</code>/<code>between</code>/<code>&lt;</code>/<code>&lt;=</code>/<code>&gt;</code>/<code>&gt;=</code>）会导致后面的条件使用不了索引。</li>
+<li>使用合理的分页方式以提高分页(<code>limit</code>)的效率。</li>
+<li>减少与数据库交互次数，尽量采用批量sql语句。 <ul>
+<li>a) <code>insert on duplicate key update</code></li>
+<li>b) <code>replace into</code> (<a href="/developer/style-guide/mysql-insert-ignore-replace-duplicate-different.html#Replace-Into-禁用">禁止使用</a>)</li>
+<li>c) <code>insert ignore</code></li>
+<li>d) <code>insert into values()</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="存储过程"><a href="#存储过程" class="headerlink" title="存储过程"></a>存储过程</h2><ul>
+<li>使用 <code>pro_存储过程名</code>。</li>
+<li>接收参数使用 <code>var_字段名</code>。</li>
+<li>接收参数将：<code>in var_data_enterprise_uuid varchar (100)</code>, <code>in var_data_enterprise_code varchar (100)</code>放置接收参数的末尾。</li>
+<li>尽可能减少游标的使用。</li>
+</ul>
+<h2 id="业务场景"><a href="#业务场景" class="headerlink" title="业务场景"></a>业务场景</h2><ul>
+<li><p>建表时必带字段：</p>
+<pre><code class="hljs undefined">`id` int(11) not null auto_increment,
+`uuid` varchar(50) default null comment &apos;uuid&apos;,
+`creater_uuid` varchar(50) default null comment &apos;创建人uuid&apos;,
+`created_time` datetime default current_timestamp comment &apos;创建时间&apos;,
+`updater_uuid` varchar(50) default null comment &apos;更新人 uuid&apos;,
+`updated_time` datetime default current_timestamp on update current_timestamp comment &apos;更新时间&apos;,
+`data_enterprise_uuid` varchar(100) default null comment &apos;数据所属企业uuid&apos;,
+`data_enterprise_code` varchar(100) default null comment &apos;数据所属企业号&apos;,
+`delete_status` varchar(100) default &apos;0&apos; comment &apos;删除状态, 0 未删除 1 已删除&apos;,</code></pre>
+</li>
+<li><p>建表时必带索引：</p>
+<pre><code class="hljs undefined">unique key `index_uuid` (`data_enterprise_uuid`,`uuid`)</code></pre>
+</li>
+<li><p><code>uuid</code> 类型统一为 <code>varchar(50)</code>。</p>
+</li>
+<li>如数量等字段需要设置默认值。</li>
+<li>尽可能减少主数据字段的变动，如有特定需求建立主数据关联表进行连接。</li>
+<li>当表与表之间需要建立关联关系时尽量使用 <code>uuid</code> 关联。</li>
+</ul>
+<h3 id="命名规范"><a href="#命名规范" class="headerlink" title="命名规范"></a>命名规范</h3><ul>
+<li>模糊查询统一使用字段 <code>fuzzy_search命名</code>。</li>
+<li>表名称命名第一段使用统一项目名称命名。</li>
+<li>当a表与b表为一对多的关系，b表为a表的明细内容时，表名称命名为：<code>a表名_detail</code>（a表明细表）。</li>
+<li>当需要接受当前登录人的 <code>uuid</code> 时，使用 <code>emp_uuid</code>字段接收。</li>
+<li>当需要接受分页时，使用<code>start_num</code>、<code>end_num</code>字段接收。</li>
+</ul>
+<h3 id="SQL-规范-1"><a href="#SQL-规范-1" class="headerlink" title="SQL 规范"></a>SQL 规范</h3><ul>
+<li>查询时<code>join</code>表时如无特殊情况需加上<code>data_enterprise_code</code>和<code>delete_status</code>的关联筛选。</li>
+<li>编写 SQL 时 <code>where</code> 条件中养成带上<code>data_enterprise_data</code>、<code>data_enterprise_code</code>和<code>delete_status</code>字段的筛选。</li>
+<li>传递给前端的参数使用驼峰形式别名。</li>
+<li><code>count</code> 统一使用 <code>count(*)</code>。</li>
+<li><p>列表页查询传递筛选时使用以下规范：</p>
+<pre><code class="hljs undefined">and case
+when &apos;#筛选字段名#&apos; = &apos;all&apos; or &apos;#筛选字段名#&apos; = &apos;&apos; then
+    1 = 1
+else
+    数据库字段名 like &apos;%#筛选字段名#%&apos;
+end</code></pre>
+</li>
+<li><p>列表默认使用 <code>order by updated_time desc</code>。</p>
+</li>
+</ul>
+<h3 id="应用场景规范"><a href="#应用场景规范" class="headerlink" title="应用场景规范"></a>应用场景规范</h3><ul>
+<li><p><strong>REP标题命名</strong>规范：<br>  1.查询 - 获取xxx列表<br>  2.查询 - 获取xxx详情<br>  3.查询 - 获取xxx明细列表<br>  4.查询 - 统计xxx数量<br>  5.查询 - xxx校验<br>  6.修改 - 修改xxx<br>  7.新增 - 新增xxx</p>
+</li>
+<li><p>需访问数据库的表单校验尽量使用多个接口实现校验。</p>
+</li>
+<li>如需要查询加上增（删改）时，选择 <code>*/select</code> 权重类型。</li>
+<li>当需要使用 <code>if</code> 判定等操作时使用存储过程完成。</li>
+<li>当需要接受对象数组进行操作时走固定接口完成。</li>
+<li>尽量保持一个项目一个分组。</li>
+<li>所有接口需经过 PostMan 测试通过才算完成。</li>
+<li><p>所有接口按模块使用印象笔记呈现，基本格式规范如下：</p>
+<pre><code class="hljs undefined">标题：接口文档-xxx模块
+正文：
+
+### 新增(修改、删除) - 新增(修改、删除)xxx
+
+#### 请求参数
+
+&#123;
+  repcode:&apos;rep_0000xx&apos;,
+  repgroup:&apos;xxx&apos;,
+  请求参数1字段名:&apos;&apos;, // 请求参数1
+  请求参数1字段名:&apos;&apos;,  // 请求参数2
+&#125;
+
+### 查询 - xxxxx
+
+#### 请求参数
+
+&#123;
+  repcode：&apos;rep_0000xx&apos;,
+  repgroup:&apos;xxx&apos;,
+  请求参数1字段名:&apos;默认值&apos;, // 请求参数1
+&#125;
+
+#### 接收参数
+
+&#123;
+  接收参数1字段名:&apos;&apos;, // 接收参数1
+&#125;</code></pre>
+</li>
+</ul>
+<h2 id="功能文档"><a href="#功能文档" class="headerlink" title="功能文档"></a>功能文档</h2><p>详情内链: <a href="/corporate-culture/teamwork.html#%E5%8A%9F%E8%83%BD%E6%96%87%E6%A1%A3">职场协作-功能文档</a></p>
+<ul>
+<li>梳理建表语句，确认字段都有备注</li>
+<li>梳理说明业务 SQL 并补充注释</li>
+<li><p>整理业务表模型 E-R 图</p>
+<p><img src="/images/MySQL-ER图示例.png" alt="MySQL-ER图示例"></p>
+<p><em>注: attachments/navicat-data-modeler-database-model/MySQL-ER图示例.ndm</em></p>
+</li>
+</ul>
+
+  
+  
+  <div class="footer" style="display:none;">
+      <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+<div class="bsa-cpc"></div>
+<script>
+  (function(){
+    if(typeof _bsa !== 'undefined' && _bsa) {
+    _bsa.init('default', 'CKYD62QM', 'placement:vuejsorg', {
+      target: '.bsa-cpc',
+      align: 'horizontal',
+      disable_css: 'true'
+    });
+      }
+  })();
+</script>
+
+    发现错误？想参与编辑？
+    <a href="https://github.com/vuejs/cn.vuejs.org/blob/master/src/developer/style-guide/mysql.md" target="_blank">
+      在 GitHub 上编辑此页！
+    </a>
+  </div>
+</div>
+
+        
+      </div>
+      <script src="/js/smooth-scroll.min.js"></script>
+    
+
+    <!-- main custom script for sidebars, version selects etc. -->
+    <script src="/js/css.escape.js"></script>
+    <script src="/js/common.js"></script>
+
+    <!-- search -->
+    <link href="//code.bdstatic.com/npm/docsearch.js@1.5.0/dist/cdn/docsearch.min.css" rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/css/search.css">
+    <script src="//code.bdstatic.com/npm/docsearch.js@1.5.0/dist/cdn/docsearch.min.js"></script>
+    <script>
+    [
+      '#search-query-nav',
+      '#search-query-sidebar',
+      '#search-query-menu'
+    ].forEach(function (selector) {
+      if (!document.querySelector(selector)) return
+      // search index defaults to v2
+      var match = window.location.pathname.match(/^\/(v\d+)/)
+      var version = match ? match[1] : 'v2'
+      docsearch({
+      appId: 'BH4D9OD16A',
+      apiKey: '5638280abff9d207417bb03be05f0b25',
+      indexName: 'vuejs_cn2',
+      inputSelector: selector,
+      algoliaOptions: { facetFilters: ["version:" + version] },
+      autocompleteOptions: { hint: false, appendTo: 'body'}
+      })
+    })
+    </script>
+
+    <!-- fastclick -->
+    <script src="//code.bdstatic.com/npm/fastclick@1.0.6/lib/fastclick.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      FastClick.attach(document.body)
+    }, false)
+    </script>
+  </body>
+</html>

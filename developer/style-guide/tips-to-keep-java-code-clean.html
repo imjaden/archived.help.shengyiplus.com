@@ -1,0 +1,908 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <title>整洁 Java 代码 — 胜因学院</title>
+    <meta charset="utf-8">
+    <meta name="description" content="Vue.js - The Progressive JavaScript Framework">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="整洁 Java 代码 — Vue.js">
+    <meta property="og:description" content="Vue.js - The Progressive JavaScript Framework">
+    <meta property="og:image" content="https://cn.vuejs.org//images/logo.png">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="整洁 Java 代码 — Vue.js">
+    <meta name="twitter:description" content="Vue.js - The Progressive JavaScript Framework">
+    <meta name="twitter:image" content="https://cn.vuejs.org/images/logo.png">
+
+    <link rel="icon" href="/images/intfocus.png" type="image/png">
+
+    <meta name="msapplication-TileColor" content="#4fc08d">
+    <meta name="theme-color" content="#4fc08d">
+
+    <meta name="msapplication-config" content="browserconfig.xml">
+    <link rel="manifest" href="/manifest.json">
+
+    <!-- <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Roboto Mono' rel='stylesheet' type='text/css'> -->
+    <!-- <link href='//fonts.googleapis.com/css?family=Dosis:500&text=Vue.js' rel='stylesheet' type='text/css'> -->
+
+    <link href="//code.bdstatic.com/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- main page styles -->
+    <link rel="stylesheet" href="/css/page.css">
+
+    <!-- this needs to be loaded before guide's inline scripts -->
+    <script src="/js/vue.js"></script>
+    <script>
+      Vue.config.productionTip = false
+      window.PAGE_TYPE = "整洁 Java 代码"
+    </script>
+  </head>
+  <body class="docs">
+    <div id="mobile-bar" >
+      <a class="menu-button"></a>
+      <a class="logo" href="/"></a>
+    </div>
+    <div id="header">
+  <a id="logo" href="/">
+    <img src="/images/logo.png" alt="vue logo">
+    <span>Intfocus</span>
+  </a>
+  <ul id="nav">
+    <li>
+  <form id="search-form">
+    <input type="text" id="search-query-nav" class="search-query st-default-search-input">
+  </form>
+</li>
+<li class="nav-dropdown-container learn">
+  <a class="nav-link current">生态系统</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><h4>应用实例</h4></li>
+    <li>
+      <ul>
+        <li><a href="/application/syp-wxmp.html" class="nav-link">胜因学院<small>(小程序)</small></a></li>
+        <li><a href="/application/syp-android-tv.html" class="nav-link">胜因盒子<small>(TV大屏)</small></a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container learn">
+  <a class="nav-link current">开发文档</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><a href="/developer/guide.html" class="nav-link current">规范指南</a></li>
+    <li><h4>编程规范</h4></li>
+    <li>
+      <ul>
+        <li><a href="/developer/style-guide/gitlab.html" class="nav-link">Gitlab</a></li>
+        <li><a href="/developer/style-guide/java.html" class="nav-link">Java</a></li>
+        <li><a href="/developer/style-guide/mysql.html" class="nav-link">MySQL</a></li>
+        <li><a href="/developer/style-guide/javascript.html" class="nav-link">Javascript</a></li>
+        <li><a href="/developer/style-guide/cdn.html" class="nav-link">CDN 运维</a></li>
+      </ul>
+    </li>
+    <li><h4>开发规范</h4></li>
+    <li>
+      <ul>
+        <li><a href="/developer/environment-guide.html" class="nav-link">环境规范<small></small></a></li>
+        <li><a href="/developer/etl-devops-guide.html" class="nav-link">ETL 运维<small></small></a></li>
+        <li><a href="/developer/api-design-guide.html" class="nav-link">API 设计<small></small></a></li>
+        <li><a href="/developer/rdc-guide.html" class="nav-link">RDC 接口<small></small></a></li>
+        <li><a href="/developer/menu-guide.html" class="nav-link">业务菜单<small></small></a></li>
+      </ul>
+    </li>
+    <li><h4>接口文档</h4></li>
+    <li>
+      <ul>
+        <li><a href="/developer/api-guide/syp-wxmp.html" class="nav-link">胜因学院<small>(小程序)</small></a></li>
+        <li><a href="/developer/api-guide/datav-report.html" class="nav-link">DataV报表<small>(大屏)</small></a></li>
+        <li><a href="/developer/api-guide/java-admin-add-module.html" class="nav-link">添加模块<small>(运营平台)</small></a></li>
+      </ul>
+    </li>
+    <li><h4>项目源码</h4></li>
+    <li>
+      <ul>
+        <li><a href="/developer/project-connections.html" class="nav-link">源码体系</a></li>
+        <li><a href="/developer/sypctl-readme.html" class="nav-link">SypCtl 工具</a></li>
+        <li><a href="/developer/jenkins-deploy.html" class="nav-link">Jenkins 部署</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container learn">
+  <a class="nav-link current">企业文化</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><h4>职场培训</h4></li>
+    <li>
+      <ul>
+        <li><a href="/corporate-culture/workplace-ceremony.html" class="nav-link">职场共识</a></li>
+        <li><a href="/corporate-culture/teamwork.html" class="nav-link">职场协作</a></li>
+      </ul>
+    </li>
+    <li><h4>生命力</h4></li>
+    <li>
+      <ul>
+        <li><a href="/corporate-culture/online-documents.html" class="nav-link">在线文档</a></li>
+        <li><a href="/corporate-culture/weekly-publication.html" class="nav-link">胜因周刊</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="https://www.intfocus.com" target="_blank" class="nav-link team">官网</a>
+</li>
+
+  </ul>
+</div>
+
+    
+    
+      <div id="main" class="fix-sidebar">
+        
+          
+  <div class="sidebar">
+  <div class="sidebar-inner">
+    <ul class="main-menu">
+      <li>
+  <form id="search-form">
+    <input type="text" id="search-query-sidebar" class="search-query st-default-search-input">
+  </form>
+</li>
+<li class="nav-dropdown-container learn">
+  <a class="nav-link current">生态系统</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><h4>应用实例</h4></li>
+    <li>
+      <ul>
+        <li><a href="/application/syp-wxmp.html" class="nav-link">胜因学院<small>(小程序)</small></a></li>
+        <li><a href="/application/syp-android-tv.html" class="nav-link">胜因盒子<small>(TV大屏)</small></a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container learn">
+  <a class="nav-link current">开发文档</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><a href="/developer/guide.html" class="nav-link current">规范指南</a></li>
+    <li><h4>编程规范</h4></li>
+    <li>
+      <ul>
+        <li><a href="/developer/style-guide/gitlab.html" class="nav-link">Gitlab</a></li>
+        <li><a href="/developer/style-guide/java.html" class="nav-link">Java</a></li>
+        <li><a href="/developer/style-guide/mysql.html" class="nav-link">MySQL</a></li>
+        <li><a href="/developer/style-guide/javascript.html" class="nav-link">Javascript</a></li>
+        <li><a href="/developer/style-guide/cdn.html" class="nav-link">CDN 运维</a></li>
+      </ul>
+    </li>
+    <li><h4>开发规范</h4></li>
+    <li>
+      <ul>
+        <li><a href="/developer/environment-guide.html" class="nav-link">环境规范<small></small></a></li>
+        <li><a href="/developer/etl-devops-guide.html" class="nav-link">ETL 运维<small></small></a></li>
+        <li><a href="/developer/api-design-guide.html" class="nav-link">API 设计<small></small></a></li>
+        <li><a href="/developer/rdc-guide.html" class="nav-link">RDC 接口<small></small></a></li>
+        <li><a href="/developer/menu-guide.html" class="nav-link">业务菜单<small></small></a></li>
+      </ul>
+    </li>
+    <li><h4>接口文档</h4></li>
+    <li>
+      <ul>
+        <li><a href="/developer/api-guide/syp-wxmp.html" class="nav-link">胜因学院<small>(小程序)</small></a></li>
+        <li><a href="/developer/api-guide/datav-report.html" class="nav-link">DataV报表<small>(大屏)</small></a></li>
+        <li><a href="/developer/api-guide/java-admin-add-module.html" class="nav-link">添加模块<small>(运营平台)</small></a></li>
+      </ul>
+    </li>
+    <li><h4>项目源码</h4></li>
+    <li>
+      <ul>
+        <li><a href="/developer/project-connections.html" class="nav-link">源码体系</a></li>
+        <li><a href="/developer/sypctl-readme.html" class="nav-link">SypCtl 工具</a></li>
+        <li><a href="/developer/jenkins-deploy.html" class="nav-link">Jenkins 部署</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container learn">
+  <a class="nav-link current">企业文化</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><h4>职场培训</h4></li>
+    <li>
+      <ul>
+        <li><a href="/corporate-culture/workplace-ceremony.html" class="nav-link">职场共识</a></li>
+        <li><a href="/corporate-culture/teamwork.html" class="nav-link">职场协作</a></li>
+      </ul>
+    </li>
+    <li><h4>生命力</h4></li>
+    <li>
+      <ul>
+        <li><a href="/corporate-culture/online-documents.html" class="nav-link">在线文档</a></li>
+        <li><a href="/corporate-culture/weekly-publication.html" class="nav-link">胜因周刊</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="https://www.intfocus.com" target="_blank" class="nav-link team">官网</a>
+</li>
+
+    </ul>
+    <div class="list">
+      
+      
+        <h2>
+          
+          
+          
+        </h2>
+        <ul class="menu-root">
+  
+    
+    
+    <li>
+      <a href="/developer/style-guide/tips-to-keep-java-code-clean.html" class="sidebar-link current">整洁 Java 代码</a>
+    </li>
+  
+</ul>
+
+      
+    </div>
+  </div>
+</div>
+
+<!--
+<div id="sidebar-sponsors-platinum-right">
+  <div class="main-sponsor">
+    <span>白金赞助商</span>
+    <div>
+    <a href="https://bit.dev/?utm_source=vue&utm_medium=vue&utm_campaign=vue&utm_term=vue&utm_content=vue" target="_blank" class="logo">
+      <img src="/images/bit.png" alt="Bit">
+    </a>
+    <a href="http://tooltwist.com/" target="_blank" class="logo">
+      <img src="/images/tooltwist.png" alt="Tooltwist">
+    </a>
+    <a href="https://vueschool.io/?utm_source=Vuejs.org&utm_medium=Banner&utm_campaign=Sponsored%20Banner&utm_content=V1" target="_blank" class="logo">
+      <img src="/images/vueschool.png" alt="VueSchool">
+    </a>
+    <a href="https://vehikl.com/" target="_blank" class="logo">
+      <img src="/images/vehikl.png" alt="Vehikl">
+    </a>
+    <a href="https://www.nativescript.org/vue?utm_source=vue-js-org&utm_medium=website&utm_campaign=nativescript-awareness" target="_blank" class="logo">
+      <img src="/images/nativescript.png" alt="NativeScript">
+    </a>
+    <a href="https://teeplusplusclth.com/" target="_blank" class="logo">
+      <img src="/images/tee__.png" alt="Tee++">
+    </a>
+    </div>
+  </div>
+  <a class="become-backer" href="/support-vuejs">
+    成为赞助者
+  </a>
+</div>
+
+-->
+
+
+<div class="content 整洁 Java 代码 with-sidebar ">
+  
+    
+      
+    
+  
+  
+    <h1>整洁 Java 代码</h1>
+  
+
+  
+
+  
+    <h2 id="工具函数"><a href="#工具函数" class="headerlink" title="工具函数"></a>工具函数</h2><h3 id="整理理念"><a href="#整理理念" class="headerlink" title="整理理念"></a>整理理念</h3><ul>
+<li>函数式编程，减少业务代码，逻辑一目了然。</li>
+<li>通用工具函数，逻辑考虑周全，出问题概率低。</li>
+</ul>
+<h3 id="场景一：比较对象"><a href="#场景一：比较对象" class="headerlink" title="场景一：比较对象"></a>场景一：比较对象</h3><pre><code class="hljs undefined">// 不完善
+thisName != null &amp;&amp; thisName.equals(name);
+
+// 冗余
+(thisName == name) || (thisName != null &amp;&amp; thisName.equals(name));
+
+// 整洁
+Objects.equals(name, thisName);</code></pre>
+<h3 id="场景一：判断对象为空"><a href="#场景一：判断对象为空" class="headerlink" title="场景一：判断对象为空"></a>场景一：判断对象为空</h3><pre><code class="hljs undefined">// 冗余
+!(list == null || list.isEmpty());
+
+// 整洁
+import org.apache.commons.collections4.CollectionUtils;
+CollectionUtils.isNotEmpty(list);</code></pre>
+<h2 id="拆分长函数"><a href="#拆分长函数" class="headerlink" title="拆分长函数"></a>拆分长函数</h2><h3 id="整洁理念"><a href="#整洁理念" class="headerlink" title="整洁理念"></a>整洁理念</h3><ul>
+<li>函数越短小精悍，功能就越单一，往往生命周期较长；</li>
+<li>函数越长越不容易理解和维护，维护人员不敢轻易修改；</li>
+<li>过长函数中，往往含有难以发现的重复代码。</li>
+</ul>
+<p>理解思路:</p>
+<ul>
+<li>当函数超过 80 行后，就属于长函数，需要进行拆分。</li>
+<li>代码块前方有一行注释，就是提醒你可以将这段代码替换成一个函数。</li>
+<li>函数有一个描述恰当的名字，就不需要去看内部代码究竟是如何实现的。</li>
+</ul>
+<h3 id="场景一：代码块封装为函数"><a href="#场景一：代码块封装为函数" class="headerlink" title="场景一：代码块封装为函数"></a>场景一：代码块封装为函数</h3><p>冗余场景:</p>
+<pre><code class="hljs undefined">// 每日生活函数
+public void liveDaily() &#123;
+    // 吃饭
+    // 吃饭相关代码几十行
+
+    // 编码
+    // 编码相关代码几十行
+
+    // 睡觉
+    // 睡觉相关代码几十行
+&#125;</code></pre>
+<p>整洁方案:</p>
+<pre><code class="hljs undefined">// 每日生活函数
+public void liveDaily() &#123;
+    // 吃饭
+    eat();
+
+    // 编码
+    code();
+
+    // 睡觉
+    sleep();
+&#125;
+
+// 吃饭函数
+private void eat() &#123;
+    // 吃饭相关代码
+&#125;
+
+// 编码函数
+private void code() &#123;
+    // 编码相关代码
+&#125;
+
+// 睡觉函数
+private void sleep() &#123;
+    // 睡觉相关代码
+&#125;</code></pre>
+<h3 id="场景二：循环体封装为函数"><a href="#场景二：循环体封装为函数" class="headerlink" title="场景二：循环体封装为函数"></a>场景二：循环体封装为函数</h3><p>冗余场景:</p>
+<pre><code class="hljs undefined">// 生活函数
+public void live() &#123;
+    while (isAlive) &#123;
+        // 吃饭
+        eat();
+
+        // 编码
+        code();
+
+        // 睡觉
+        sleep();
+    &#125;
+&#125;</code></pre>
+<p>整洁方案:</p>
+<pre><code class="hljs undefined">// 生活函数
+public void live() &#123;
+    while (isAlive) &#123;
+        // 每日生活
+        liveDaily();
+    &#125;
+&#125;
+
+// 每日生活函数
+private void liveDaily() &#123;
+    // 吃饭
+    eat();
+
+    // 编码
+    code();
+
+    // 睡觉
+    sleep();
+&#125;</code></pre>
+<h3 id="场景三：条件体封装为函数"><a href="#场景三：条件体封装为函数" class="headerlink" title="场景三：条件体封装为函数"></a>场景三：条件体封装为函数</h3><p>冗余场景</p>
+<pre><code class="hljs undefined">// 外出函数
+public void goOut() &#123;
+    // 判断是否周末
+    // 判断是否周末: 是周末则游玩
+    if (isWeekday()) &#123;
+        // 游玩代码几十行
+    &#125;
+    // 判断是否周末: 非周末则工作
+    else &#123;
+        // 工作代码几十行
+    &#125;
+&#125;</code></pre>
+<p>整洁方案</p>
+<pre><code class="hljs undefined">// 外出函数
+public void goOut() &#123;
+    // 判断是否周末
+    // 判断是否周末: 是周末则游玩
+    if (isWeekday()) &#123;
+        play();
+        return;
+    &#125;
+    // 判断是否周末: 非周末则工作
+    else &#123;
+        // work();
+    &#125;
+&#125;
+
+// 游玩函数
+private void play() &#123;
+    // 游玩代码几十行
+&#125;
+
+// 工作函数
+private void work() &#123;
+    // 工作代码几十行
+&#125;</code></pre>
+<h2 id="函数内代码块级别尽量一致"><a href="#函数内代码块级别尽量一致" class="headerlink" title="函数内代码块级别尽量一致"></a>函数内代码块级别尽量一致</h2><h3 id="整洁理念-1"><a href="#整洁理念-1" class="headerlink" title="整洁理念"></a>整洁理念</h3><ul>
+<li>函数调用表明用途，函数实现表达逻辑，层次分明便于理解；</li>
+<li>不用层次的代码块放在一起，容易让人觉得代码头重脚轻。</li>
+</ul>
+<h3 id="场景一：函数与代码块混合"><a href="#场景一：函数与代码块混合" class="headerlink" title="场景一：函数与代码块混合"></a>场景一：函数与代码块混合</h3><p>冗余场景</p>
+<pre><code class="hljs undefined">// 每日生活函数
+public void liveDaily() &#123;
+    // 吃饭
+    eat();
+
+    // 编码
+    code();
+
+    // 睡觉
+    // 睡觉相关代码几十行
+&#125;</code></pre>
+<p>整洁方案</p>
+<pre><code class="hljs undefined">public void liveDaily() &#123;
+    // 吃饭
+    eat();
+
+    // 编码
+    code();
+
+    // 睡觉
+    sleep();
+&#125;
+
+// 睡觉
+private void sleep() &#123;
+    // 睡觉相关代码
+&#125;</code></pre>
+<h2 id="封装相同功能代码为函数"><a href="#封装相同功能代码为函数" class="headerlink" title="封装相同功能代码为函数"></a>封装相同功能代码为函数</h2><h3 id="整理理念-1"><a href="#整理理念-1" class="headerlink" title="整理理念:"></a>整理理念:</h3><ul>
+<li>封装相似代码为函数，差异性通过函数参数控制。</li>
+<li>封装公共函数，减少代码行数，提高代码质量；</li>
+<li>封装公共函数，使业务代码更精炼，可读性可维护性更强。</li>
+</ul>
+<h3 id="场景一：封装相同代码为函数"><a href="#场景一：封装相同代码为函数" class="headerlink" title="场景一：封装相同代码为函数"></a>场景一：封装相同代码为函数</h3><p>冗余场景</p>
+<pre><code class="hljs undefined">// 禁用用户函数
+public void disableUser() &#123;
+    // 禁用黑名单用户
+    List&lt;Long&gt; userIdList = queryBlackUser();
+    for (Long userId : userIdList) &#123;
+        User userUpdate = new User();
+        userUpdate.setId(userId);
+        userUpdate.setEnable(Boolean.FALSE);
+        userDAO.update(userUpdate);
+    &#125;
+
+    // 禁用过期用户
+    userIdList = queryExpiredUser();
+    for (Long userId : userIdList) &#123;
+        User userUpdate = new User();
+        userUpdate.setId(userId);
+        userUpdate.setEnable(Boolean.FALSE);
+        userDAO.update(userUpdate);
+    &#125;
+&#125;</code></pre>
+<p>整洁方案</p>
+<pre><code class="hljs undefined">// 禁用用户函数
+public void disableUser() &#123;
+    // 禁用黑名单用户
+    List&lt;Long&gt; userIdList = queryBlackUser();
+    for (Long userId : userIdList) &#123;
+        disableUser(userId);
+    &#125;
+
+    // 禁用过期用户
+    userIdList = queryExpiredUser();
+    for (Long userId : userIdList) &#123;
+        disableUser(userId);
+    &#125;
+&#125;
+
+// 禁用用户函数
+private void disableUser(Long userId) &#123;
+    User userUpdate = new User();
+    userUpdate.setId(userId);
+    userUpdate.setEnable(Boolean.FALSE);
+    userDAO.update(userUpdate);
+&#125;</code></pre>
+<h3 id="场景二：封装相似代码为函数"><a href="#场景二：封装相似代码为函数" class="headerlink" title="场景二：封装相似代码为函数"></a>场景二：封装相似代码为函数</h3><p>冗余场景</p>
+<pre><code class="hljs undefined">// 通过工单函数
+public void adoptOrder(Long orderId) &#123;
+    Order orderUpdate = new Order();
+    orderUpdate.setId(orderId);
+    orderUpdate.setStatus(OrderStatus.ADOPTED);
+    orderUpdate.setAuditTime(new Date());
+    orderDAO.update(orderUpdate);
+&#125;
+
+// 驳回工单函数
+public void rejectOrder(Long orderId) &#123;
+    Order orderUpdate = new Order();
+    orderUpdate.setId(orderId);
+    orderUpdate.setStatus(OrderStatus.REJECTED);
+    orderUpdate.setAuditTime(new Date());
+    orderDAO.update(orderUpdate);
+&#125;</code></pre>
+<p>整洁方案</p>
+<pre><code class="hljs undefined">// 通过工单函数
+public void adoptOrder(Long orderId) &#123;
+    auditOrder(orderId, OrderStatus.ADOPTED);
+&#125;
+
+// 驳回工单函数
+public void rejectOrder(Long orderId) &#123;
+    auditOrder(orderId, OrderStatus.REJECTED);
+&#125;
+
+// 审核工单函数
+private void auditOrder(Long orderId, OrderStatus orderStatus) &#123;
+    Order orderUpdate = new Order();
+    orderUpdate.setId(orderId);
+    orderUpdate.setStatus(orderStatus);
+    orderUpdate.setAuditTime(new Date());
+    orderDAO.update(orderUpdate);
+&#125;</code></pre>
+<h2 id="封装获取参数值函数"><a href="#封装获取参数值函数" class="headerlink" title="封装获取参数值函数"></a>封装获取<code>参数值函数</code></h2><h3 id="整洁理念-2"><a href="#整洁理念-2" class="headerlink" title="整洁理念"></a>整洁理念</h3><ul>
+<li>把获取参数值从业务函数中独立，使业务逻辑更清晰；</li>
+<li>封装的获取参数值为独立函数，在代码中重复使用。</li>
+</ul>
+<h3 id="场景示例"><a href="#场景示例" class="headerlink" title="场景示例"></a>场景示例</h3><p>冗余场景</p>
+<pre><code class="hljs undefined">// 是否通过函数
+public boolean isPassed(Long userId) &#123;
+    // 获取通过阈值
+    double thisPassThreshold = PASS_THRESHOLD;
+    if (Objects.nonNull(passThreshold)) &#123;
+        thisPassThreshold = passThreshold;
+    &#125;
+
+    // 获取通过率
+    double passRate = getPassRate(userId);
+
+    // 判读是否通过
+    return passRate &gt;= thisPassThreshold;
+&#125;</code></pre>
+<p>整洁方案</p>
+<pre><code class="hljs undefined">// 是否通过函数
+public boolean isPassed(Long userId) &#123;
+    // 获取通过阈值
+    double thisPassThreshold = getPassThreshold();
+
+    // 获取通过率
+    double passRate = getPassRate(userId);
+
+    // 判读是否通过
+    return passRate &gt;= thisPassThreshold;
+&#125;
+
+// 获取通过阈值函数
+private double getPassThreshold() &#123;
+    if (Objects.nonNull(passThreshold)) &#123;
+        return passThreshold;
+    &#125;
+    return PASS_THRESHOLD;
+&#125;</code></pre>
+<h2 id="接口参数化封装相同逻辑"><a href="#接口参数化封装相同逻辑" class="headerlink" title="接口参数化封装相同逻辑"></a>接口参数化封装相同逻辑</h2><h3 id="整洁理念-3"><a href="#整洁理念-3" class="headerlink" title="整洁理念"></a>整洁理念</h3><ul>
+<li>把核心逻辑从各个业务函数中抽取，使业务代码更清晰更易维护；</li>
+<li>避免重复性代码多次编写，精简重复函数越多收益越大。</li>
+</ul>
+<h3 id="场景示例-1"><a href="#场景示例-1" class="headerlink" title="场景示例"></a>场景示例</h3><p>冗余场景</p>
+<pre><code class="hljs undefined">// 发送审核员结算数据函数
+public void sendAuditorSettleData() &#123;
+    List&lt;WorkerSettleData&gt; settleDataList = auditTaskDAO.statAuditorSettleData();
+    for (WorkerSettleData settleData : settleDataList) &#123;
+        WorkerPushData pushData = new WorkerPushData();
+        pushData.setId(settleData.getWorkerId());
+        pushData.setType(WorkerPushDataType.AUDITOR);
+        pushData.setData(settleData);
+        pushService.push(pushData);
+    &#125;
+&#125;
+
+// 发送验收员结算数据函数
+public void sendCheckerSettleData() &#123;
+    List&lt;WorkerSettleData&gt; settleDataList = auditTaskDAO.statCheckerSettleData();
+    for (WorkerSettleData settleData : settleDataList) &#123;
+        WorkerPushData pushData = new WorkerPushData();
+        pushData.setId(settleData.getWorkerId());
+        pushData.setType(WorkerPushDataType.CHECKER);
+        pushData.setData(settleData);
+        pushService.push(pushData);
+    &#125;
+&#125;</code></pre>
+<p>整洁方案</p>
+<pre><code class="hljs undefined">// 发送审核员结算数据函数
+public void sendAuditorSettleData() &#123;
+    sendWorkerSettleData(WorkerPushDataType.AUDITOR, () -&gt; auditTaskDAO.statAuditorSettleData());
+&#125;
+
+// 发送验收员结算数据函数
+public void sendCheckerSettleData() &#123;
+    sendWorkerSettleData(WorkerPushDataType.CHECKER, () -&gt; auditTaskDAO.statCheckerSettleData());
+&#125;
+
+// 发送作业员结算数据函数
+public void sendWorkerSettleData(WorkerPushDataType dataType, WorkerSettleDataProvider dataProvider) &#123;
+    List&lt;WorkerSettleData&gt; settleDataList = dataProvider.statWorkerSettleData();
+    for (WorkerSettleData settleData : settleDataList) &#123;
+        WorkerPushData pushData = new WorkerPushData();
+        pushData.setId(settleData.getWorkerId());
+        pushData.setType(dataType);
+        pushData.setData(settleData);
+        pushService.push(pushData);
+    &#125;
+&#125;
+
+// 作业员结算数据提供者接口
+private interface WorkerSettleDataProvider &#123;
+    // 统计作业员结算数据
+    public List&lt;WorkerSettleData&gt; statWorkerSettleData();
+&#125;</code></pre>
+<h2 id="减少函数代码层级"><a href="#减少函数代码层级" class="headerlink" title="减少函数代码层级"></a>减少函数代码层级</h2><h3 id="整洁理念-4"><a href="#整洁理念-4" class="headerlink" title="整洁理念"></a>整洁理念</h3><ul>
+<li>代码层级减少，代码缩进减少；</li>
+<li>模块划分清晰，方便阅读维护。</li>
+<li>过多的缩进会让函数难以阅读。</li>
+<li>函数代码层级控制在1-4之间。</li>
+</ul>
+<h3 id="场景一：提前-return-返回函数"><a href="#场景一：提前-return-返回函数" class="headerlink" title="场景一：提前 return 返回函数"></a>场景一：提前 <code>return</code> 返回函数</h3><p>冗余场景</p>
+<pre><code class="hljs undefined">// 获取用户余额函数
+public Double getUserBalance(Long userId) &#123;
+    User user = getUser(userId);
+    if (Objects.nonNull(user)) &#123;
+        UserAccount account = user.getAccount();
+        if (Objects.nonNull(account)) &#123;
+            return account.getBalance();
+        &#125;
+    &#125;
+    return null;
+&#125;</code></pre>
+<p>整洁方案</p>
+<pre><code class="hljs undefined">// 获取用户余额函数
+public Double getUserBalance(Long userId) &#123;
+    // 获取用户信息
+    User user = getUser(userId);
+    if (Objects.isNull(user)) &#123;
+        return null;
+    &#125;
+
+    // 获取用户账户
+    UserAccount account = user.getAccount();
+    if (Objects.isNull(account)) &#123;
+        return null;
+    &#125;
+
+    // 返回账户余额
+    return account.getBalance();
+&#125;</code></pre>
+<h3 id="场景二：提前-continue-结束循环"><a href="#场景二：提前-continue-结束循环" class="headerlink" title="场景二：提前 continue 结束循环"></a>场景二：提前 <code>continue</code> 结束循环</h3><p>整洁建议:</p>
+<ul>
+<li>在循环体中，建议最多使用一次continue。</li>
+<li>需要多次 continue 时，把循环体封装为函数。</li>
+</ul>
+<p>冗余场景</p>
+<pre><code class="hljs undefined">// 获取合计余额函数
+public double getTotalBalance(List&lt;User&gt; userList) &#123;
+    // 初始合计余额
+    double totalBalance = 0.0D;
+
+    // 依次累加余额
+    for (User user : userList) &#123;
+        // 获取用户账户
+        UserAccount account = user.getAccount();
+        if (Objects.nonNull(account)) &#123;
+            // 累加用户余额
+            Double balance = account.getBalance();
+            if (Objects.nonNull(balance)) &#123;
+                totalBalance += balance;
+            &#125;
+        &#125;
+    &#125;
+    // 返回合计余额
+    return totalBalance;
+&#125;</code></pre>
+<p>整洁方案</p>
+<pre><code class="hljs undefined">// 获取合计余额函数
+public double getTotalBalance(List&lt;User&gt; userList) &#123;
+    // 初始合计余额
+    double totalBalance = 0.0D;
+
+    // 依次累加余额
+    for (User user : userList) &#123;
+        // 获取用户账户
+        UserAccount account = user.getAccount();
+        if (Objects.isNull(account)) &#123;
+            continue;
+        &#125;
+
+        // 累加用户余额
+        Double balance = account.getBalance();
+        if (Objects.nonNull(balance)) &#123;
+            totalBalance += balance;
+        &#125;
+    &#125;
+
+    // 返回合计余额
+    return totalBalance;
+&#125;</code></pre>
+<h2 id="封装条件表达式函数"><a href="#封装条件表达式函数" class="headerlink" title="封装条件表达式函数"></a>封装条件表达式函数</h2><h3 id="整洁理念-5"><a href="#整洁理念-5" class="headerlink" title="整洁理念"></a>整洁理念</h3><ul>
+<li>把条件表达式从业务函数中独立，使业务逻辑更清晰；</li>
+<li>封装的条件表达式为独立函数，可以在代码中重复使用。</li>
+</ul>
+<h3 id="场景一：封装简单条件表达式为函数"><a href="#场景一：封装简单条件表达式为函数" class="headerlink" title="场景一：封装简单条件表达式为函数"></a>场景一：封装简单条件表达式为函数</h3><p>冗余场景</p>
+<pre><code class="hljs undefined">// 获取门票价格函数
+public double getTicketPrice(Date currDate) &#123;
+    if (Objects.nonNull(currDate) &amp;&amp; currDate.after(DISCOUNT_BEGIN_DATE)
+        &amp;&amp; currDate.before(DISCOUNT_END_DATE)) &#123;
+        return TICKET_PRICE * DISCOUNT_RATE;
+    &#125;
+    return TICKET_PRICE;
+&#125;</code></pre>
+<p>整洁方案</p>
+<pre><code class="hljs undefined">// 获取门票价格函数
+public double getTicketPrice(Date currDate) &#123;
+    if (isDiscountDate(currDate)) &#123;
+        return TICKET_PRICE * DISCOUNT_RATE;
+    &#125;
+    return TICKET_PRICE;
+&#125;
+
+// 是否折扣日期函数
+private static boolean isDiscountDate(Date currDate) &#123;
+    return Objects.nonNull(currDate) 
+        &amp;&amp; currDate.after(DISCOUNT_BEGIN_DATE)
+        &amp;&amp; currDate.before(DISCOUNT_END_DATE);
+&#125;</code></pre>
+<h3 id="场景二：封装复杂条件表达式为函数"><a href="#场景二：封装复杂条件表达式为函数" class="headerlink" title="场景二：封装复杂条件表达式为函数"></a>场景二：封装复杂条件表达式为函数</h3><p>整洁建议: 也可以用流式(Stream)编程的过滤来实现。</p>
+<p>冗余场景</p>
+<pre><code class="hljs undefined">// 获取土豪用户列表
+public List&lt;User&gt; getRichUserList(List&lt;User&gt; userList) &#123;
+    // 初始土豪用户列表
+    List&lt;User&gt; richUserList = new ArrayList&lt;&gt;();
+
+    // 依次查找土豪用户
+    for (User user : userList) &#123;
+        // 获取用户账户
+        UserAccount account = user.getAccount();
+        if (Objects.nonNull(account)) &#123;
+            // 判断用户余额
+            Double balance = account.getBalance();
+            if (Objects.nonNull(balance) &amp;&amp; balance.compareTo(RICH_THRESHOLD) &gt;= 0) &#123;
+                // 添加土豪用户
+                richUserList.add(user);
+            &#125;
+        &#125;
+    &#125;
+
+    // 返回土豪用户列表
+    return richUserList;
+&#125;</code></pre>
+<p>整洁方案</p>
+<pre><code class="hljs undefined">// 获取土豪用户列表
+public List&lt;User&gt; getRichUserList(List&lt;User&gt; userList) &#123;
+    // 初始土豪用户列表
+    List&lt;User&gt; richUserList = new ArrayList&lt;&gt;();
+
+    // 依次查找土豪用户
+    for (User user : userList) &#123;
+        // 判断土豪用户
+        if (isRichUser(user)) &#123;
+            // 添加土豪用户
+            richUserList.add(user);
+        &#125;
+    &#125;
+
+    // 返回土豪用户列表
+    return richUserList;
+&#125;
+
+// 是否土豪用户
+private boolean isRichUser(User user) &#123;
+    // 获取用户账户
+    UserAccount account = user.getAccount();
+    if (Objects.isNull(account)) &#123;
+        return false;
+    &#125;
+
+    // 获取用户余额
+    Double balance = account.getBalance();
+    if (Objects.isNull(balance)) &#123;
+        return false;
+    &#125;
+
+    // 比较用户余额
+    return balance.compareTo(RICH_THRESHOLD) &gt;= 0;
+&#125;</code></pre>
+<h2 id="避免不必要的空指针判断"><a href="#避免不必要的空指针判断" class="headerlink" title="避免不必要的空指针判断"></a>避免不必要的空指针判断</h2><h3 id="整洁理念-6"><a href="#整洁理念-6" class="headerlink" title="整洁理念"></a>整洁理念</h3><ul>
+<li>避免不必要的空指针判断，精简业务代码处理逻辑，提高业务代码运行效率；</li>
+<li>不必要的空指针判断，属于永远不执行的Death代码，删除有助于代码维护。</li>
+</ul>
+<h3 id="场景一：MyBatis-返回值"><a href="#场景一：MyBatis-返回值" class="headerlink" title="场景一：MyBatis 返回值"></a>场景一：MyBatis 返回值</h3><p>MyBatis是一款优秀的持久层框架，是在项目中使用的最广泛的数据库中间件之一。</p>
+<p>通过对MyBatis源码进行分析，查询函数返回的列表和数据项都不为空，在代码中可以不用进行空指针判断。</p>
+<h2 id="参考-摘录"><a href="#参考-摘录" class="headerlink" title="参考/摘录"></a>参考/摘录</h2><ul>
+<li><a href="https://blog.csdn.net/qq_32447301/article/details/97042462" target="_blank" rel="noopener">Java代码整洁之道</a></li>
+</ul>
+
+  
+  
+  <div class="footer" style="display:none;">
+      <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+<div class="bsa-cpc"></div>
+<script>
+  (function(){
+    if(typeof _bsa !== 'undefined' && _bsa) {
+    _bsa.init('default', 'CKYD62QM', 'placement:vuejsorg', {
+      target: '.bsa-cpc',
+      align: 'horizontal',
+      disable_css: 'true'
+    });
+      }
+  })();
+</script>
+
+    发现错误？想参与编辑？
+    <a href="https://github.com/vuejs/cn.vuejs.org/blob/master/src/developer/style-guide/tips-to-keep-java-code-clean.md" target="_blank">
+      在 GitHub 上编辑此页！
+    </a>
+  </div>
+</div>
+
+        
+      </div>
+      <script src="/js/smooth-scroll.min.js"></script>
+    
+
+    <!-- main custom script for sidebars, version selects etc. -->
+    <script src="/js/css.escape.js"></script>
+    <script src="/js/common.js"></script>
+
+    <!-- search -->
+    <link href="//code.bdstatic.com/npm/docsearch.js@1.5.0/dist/cdn/docsearch.min.css" rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/css/search.css">
+    <script src="//code.bdstatic.com/npm/docsearch.js@1.5.0/dist/cdn/docsearch.min.js"></script>
+    <script>
+    [
+      '#search-query-nav',
+      '#search-query-sidebar',
+      '#search-query-menu'
+    ].forEach(function (selector) {
+      if (!document.querySelector(selector)) return
+      // search index defaults to v2
+      var match = window.location.pathname.match(/^\/(v\d+)/)
+      var version = match ? match[1] : 'v2'
+      docsearch({
+      appId: 'BH4D9OD16A',
+      apiKey: '5638280abff9d207417bb03be05f0b25',
+      indexName: 'vuejs_cn2',
+      inputSelector: selector,
+      algoliaOptions: { facetFilters: ["version:" + version] },
+      autocompleteOptions: { hint: false, appendTo: 'body'}
+      })
+    })
+    </script>
+
+    <!-- fastclick -->
+    <script src="//code.bdstatic.com/npm/fastclick@1.0.6/lib/fastclick.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      FastClick.attach(document.body)
+    }, false)
+    </script>
+  </body>
+</html>

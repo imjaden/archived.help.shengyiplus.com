@@ -1,0 +1,509 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <title>ETL 运维 — 胜因学院</title>
+    <meta charset="utf-8">
+    <meta name="description" content="Vue.js - The Progressive JavaScript Framework">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="ETL 运维 — Vue.js">
+    <meta property="og:description" content="Vue.js - The Progressive JavaScript Framework">
+    <meta property="og:image" content="https://cn.vuejs.org//images/logo.png">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="ETL 运维 — Vue.js">
+    <meta name="twitter:description" content="Vue.js - The Progressive JavaScript Framework">
+    <meta name="twitter:image" content="https://cn.vuejs.org/images/logo.png">
+
+    <link rel="icon" href="/images/intfocus.png" type="image/png">
+
+    <meta name="msapplication-TileColor" content="#4fc08d">
+    <meta name="theme-color" content="#4fc08d">
+
+    <meta name="msapplication-config" content="browserconfig.xml">
+    <link rel="manifest" href="/manifest.json">
+
+    <!-- <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Roboto Mono' rel='stylesheet' type='text/css'> -->
+    <!-- <link href='//fonts.googleapis.com/css?family=Dosis:500&text=Vue.js' rel='stylesheet' type='text/css'> -->
+
+    <link href="//code.bdstatic.com/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- main page styles -->
+    <link rel="stylesheet" href="/css/page.css">
+
+    <!-- this needs to be loaded before guide's inline scripts -->
+    <script src="/js/vue.js"></script>
+    <script>
+      Vue.config.productionTip = false
+      window.PAGE_TYPE = "ETL 运维"
+    </script>
+  </head>
+  <body class="docs">
+    <div id="mobile-bar" >
+      <a class="menu-button"></a>
+      <a class="logo" href="/"></a>
+    </div>
+    <div id="header">
+  <a id="logo" href="/">
+    <img src="/images/logo.png" alt="vue logo">
+    <span>Intfocus</span>
+  </a>
+  <ul id="nav">
+    <li>
+  <form id="search-form">
+    <input type="text" id="search-query-nav" class="search-query st-default-search-input">
+  </form>
+</li>
+<li class="nav-dropdown-container learn">
+  <a class="nav-link">生态系统</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><h4>应用实例</h4></li>
+    <li>
+      <ul>
+        <li><a href="/application/syp-wxmp.html" class="nav-link">胜因学院<small>(小程序)</small></a></li>
+        <li><a href="/application/syp-android-tv.html" class="nav-link">胜因盒子<small>(TV大屏)</small></a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container learn">
+  <a class="nav-link">开发文档</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><a href="/developer/guide.html" class="nav-link current">规范指南</a></li>
+    <li><h4>编程规范</h4></li>
+    <li>
+      <ul>
+        <li><a href="/developer/style-guide/gitlab.html" class="nav-link">Gitlab</a></li>
+        <li><a href="/developer/style-guide/java.html" class="nav-link">Java</a></li>
+        <li><a href="/developer/style-guide/mysql.html" class="nav-link">MySQL</a></li>
+        <li><a href="/developer/style-guide/javascript.html" class="nav-link">Javascript</a></li>
+        <li><a href="/developer/style-guide/cdn.html" class="nav-link">CDN 运维</a></li>
+      </ul>
+    </li>
+    <li><h4>开发规范</h4></li>
+    <li>
+      <ul>
+        <li><a href="/developer/environment-guide.html" class="nav-link">环境规范<small></small></a></li>
+        <li><a href="/developer/etl-devops-guide.html" class="nav-link current">ETL 运维<small></small></a></li>
+        <li><a href="/developer/api-design-guide.html" class="nav-link">API 设计<small></small></a></li>
+        <li><a href="/developer/rdc-guide.html" class="nav-link">RDC 接口<small></small></a></li>
+        <li><a href="/developer/menu-guide.html" class="nav-link">业务菜单<small></small></a></li>
+      </ul>
+    </li>
+    <li><h4>接口文档</h4></li>
+    <li>
+      <ul>
+        <li><a href="/developer/api-guide/syp-wxmp.html" class="nav-link">胜因学院<small>(小程序)</small></a></li>
+        <li><a href="/developer/api-guide/datav-report.html" class="nav-link">DataV报表<small>(大屏)</small></a></li>
+        <li><a href="/developer/api-guide/java-admin-add-module.html" class="nav-link">添加模块<small>(运营平台)</small></a></li>
+      </ul>
+    </li>
+    <li><h4>项目源码</h4></li>
+    <li>
+      <ul>
+        <li><a href="/developer/project-connections.html" class="nav-link">源码体系</a></li>
+        <li><a href="/developer/sypctl-readme.html" class="nav-link">SypCtl 工具</a></li>
+        <li><a href="/developer/jenkins-deploy.html" class="nav-link">Jenkins 部署</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container learn">
+  <a class="nav-link">企业文化</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><h4>职场培训</h4></li>
+    <li>
+      <ul>
+        <li><a href="/corporate-culture/workplace-ceremony.html" class="nav-link">职场共识</a></li>
+        <li><a href="/corporate-culture/teamwork.html" class="nav-link">职场协作</a></li>
+      </ul>
+    </li>
+    <li><h4>生命力</h4></li>
+    <li>
+      <ul>
+        <li><a href="/corporate-culture/online-documents.html" class="nav-link">在线文档</a></li>
+        <li><a href="/corporate-culture/weekly-publication.html" class="nav-link">胜因周刊</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="https://www.intfocus.com" target="_blank" class="nav-link team">官网</a>
+</li>
+
+  </ul>
+</div>
+
+    
+    
+      <div id="main" class="fix-sidebar">
+        
+          
+  <div class="sidebar">
+  <div class="sidebar-inner">
+    <ul class="main-menu">
+      <li>
+  <form id="search-form">
+    <input type="text" id="search-query-sidebar" class="search-query st-default-search-input">
+  </form>
+</li>
+<li class="nav-dropdown-container learn">
+  <a class="nav-link">生态系统</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><h4>应用实例</h4></li>
+    <li>
+      <ul>
+        <li><a href="/application/syp-wxmp.html" class="nav-link">胜因学院<small>(小程序)</small></a></li>
+        <li><a href="/application/syp-android-tv.html" class="nav-link">胜因盒子<small>(TV大屏)</small></a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container learn">
+  <a class="nav-link">开发文档</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><a href="/developer/guide.html" class="nav-link current">规范指南</a></li>
+    <li><h4>编程规范</h4></li>
+    <li>
+      <ul>
+        <li><a href="/developer/style-guide/gitlab.html" class="nav-link">Gitlab</a></li>
+        <li><a href="/developer/style-guide/java.html" class="nav-link">Java</a></li>
+        <li><a href="/developer/style-guide/mysql.html" class="nav-link">MySQL</a></li>
+        <li><a href="/developer/style-guide/javascript.html" class="nav-link">Javascript</a></li>
+        <li><a href="/developer/style-guide/cdn.html" class="nav-link">CDN 运维</a></li>
+      </ul>
+    </li>
+    <li><h4>开发规范</h4></li>
+    <li>
+      <ul>
+        <li><a href="/developer/environment-guide.html" class="nav-link">环境规范<small></small></a></li>
+        <li><a href="/developer/etl-devops-guide.html" class="nav-link current">ETL 运维<small></small></a></li>
+        <li><a href="/developer/api-design-guide.html" class="nav-link">API 设计<small></small></a></li>
+        <li><a href="/developer/rdc-guide.html" class="nav-link">RDC 接口<small></small></a></li>
+        <li><a href="/developer/menu-guide.html" class="nav-link">业务菜单<small></small></a></li>
+      </ul>
+    </li>
+    <li><h4>接口文档</h4></li>
+    <li>
+      <ul>
+        <li><a href="/developer/api-guide/syp-wxmp.html" class="nav-link">胜因学院<small>(小程序)</small></a></li>
+        <li><a href="/developer/api-guide/datav-report.html" class="nav-link">DataV报表<small>(大屏)</small></a></li>
+        <li><a href="/developer/api-guide/java-admin-add-module.html" class="nav-link">添加模块<small>(运营平台)</small></a></li>
+      </ul>
+    </li>
+    <li><h4>项目源码</h4></li>
+    <li>
+      <ul>
+        <li><a href="/developer/project-connections.html" class="nav-link">源码体系</a></li>
+        <li><a href="/developer/sypctl-readme.html" class="nav-link">SypCtl 工具</a></li>
+        <li><a href="/developer/jenkins-deploy.html" class="nav-link">Jenkins 部署</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container learn">
+  <a class="nav-link">企业文化</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><h4>职场培训</h4></li>
+    <li>
+      <ul>
+        <li><a href="/corporate-culture/workplace-ceremony.html" class="nav-link">职场共识</a></li>
+        <li><a href="/corporate-culture/teamwork.html" class="nav-link">职场协作</a></li>
+      </ul>
+    </li>
+    <li><h4>生命力</h4></li>
+    <li>
+      <ul>
+        <li><a href="/corporate-culture/online-documents.html" class="nav-link">在线文档</a></li>
+        <li><a href="/corporate-culture/weekly-publication.html" class="nav-link">胜因周刊</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="https://www.intfocus.com" target="_blank" class="nav-link team">官网</a>
+</li>
+
+    </ul>
+    <div class="list">
+      
+      
+        <h2>
+          
+          
+          
+        </h2>
+        <ul class="menu-root">
+  
+    
+    
+    <li>
+      <a href="/developer/etl-devops-guide.html" class="sidebar-link current">ETL 运维</a>
+    </li>
+  
+</ul>
+
+      
+    </div>
+  </div>
+</div>
+
+<!--
+<div id="sidebar-sponsors-platinum-right">
+  <div class="main-sponsor">
+    <span>白金赞助商</span>
+    <div>
+    <a href="https://bit.dev/?utm_source=vue&utm_medium=vue&utm_campaign=vue&utm_term=vue&utm_content=vue" target="_blank" class="logo">
+      <img src="/images/bit.png" alt="Bit">
+    </a>
+    <a href="http://tooltwist.com/" target="_blank" class="logo">
+      <img src="/images/tooltwist.png" alt="Tooltwist">
+    </a>
+    <a href="https://vueschool.io/?utm_source=Vuejs.org&utm_medium=Banner&utm_campaign=Sponsored%20Banner&utm_content=V1" target="_blank" class="logo">
+      <img src="/images/vueschool.png" alt="VueSchool">
+    </a>
+    <a href="https://vehikl.com/" target="_blank" class="logo">
+      <img src="/images/vehikl.png" alt="Vehikl">
+    </a>
+    <a href="https://www.nativescript.org/vue?utm_source=vue-js-org&utm_medium=website&utm_campaign=nativescript-awareness" target="_blank" class="logo">
+      <img src="/images/nativescript.png" alt="NativeScript">
+    </a>
+    <a href="https://teeplusplusclth.com/" target="_blank" class="logo">
+      <img src="/images/tee__.png" alt="Tee++">
+    </a>
+    </div>
+  </div>
+  <a class="become-backer" href="/support-vuejs">
+    成为赞助者
+  </a>
+</div>
+
+-->
+
+
+<div class="content ETL 运维 with-sidebar ">
+  
+    
+      
+    
+  
+  
+    <h1>ETL 运维</h1>
+  
+
+  
+
+  
+    <h2 id="思维导图"><a href="#思维导图" class="headerlink" title="思维导图"></a>思维导图</h2><p><img src="/images/数据库运维规范.png" alt="数据库运维规范.png"></p>
+<p><em>注: attachments/xmind/数据库运维规范.xmind</em></p>
+<h2 id="运维流程"><a href="#运维流程" class="headerlink" title="运维流程"></a>运维流程</h2><ul>
+<li>确认功能需求</li>
+<li><strong>本地</strong>开发测试</li>
+<li>维护运维 SQL 脚本至<a href="https://gitlab.idata.mobi/shengyiplus/syp-model-scripts" target="_blank" rel="noopener">SypModelScript</a></li>
+<li>提交代码合并审核(<em>参考<a href="/corporate-culture/teamwork.html#Gitlab-协作">Gitlab 协作</a></em>)</li>
+<li>向管理员申请部署至<strong>开发/正式</strong>环境</li>
+</ul>
+<p><em>注意:</em></p>
+<ul>
+<li>确认提交的SQL运维脚本语法正确</li>
+<li>确认SQL运维脚本可重复执行(不报错)</li>
+</ul>
+<h2 id="运维范围"><a href="#运维范围" class="headerlink" title="运维范围"></a>运维范围</h2><p>包含但不限于以下内容:(<em>参考<a href="/developer/style-guide/mysql.html#表设计规范">表设计规范</a></em>)</p>
+<ul>
+<li>数据库: DDL 语句、存储过程、函数、视图、事件</li>
+<li>数据表: DDL 语句、触发器、字段更新语句</li>
+<li>业务数据: 数据插入语句</li>
+</ul>
+<h2 id="ETL-流规范"><a href="#ETL-流规范" class="headerlink" title="ETL 流规范"></a>ETL 流规范</h2><h3 id="数据库分层"><a href="#数据库分层" class="headerlink" title="数据库分层"></a>数据库分层</h3><p><img src="/images/ETL流规范.png" alt="ETL流规范"></p>
+<p><em>注: attachments/xmind/ETL流规范.xmind</em></p>
+<p>由于当前业务简单（与数据量多少无关），ETL 流程分三段:（其实需要维护是两段）</p>
+<ul>
+<li><p><strong>客户数据源</strong>。</p>
+<p>数据类型: <strong>客户的数据库，或提供的 Excel/SQL 等数据。</strong>  </p>
+<p>客户数据源信息、定时提供的Excel/SQL数据备份归档在印象笔记。</p>
+</li>
+<li><p><strong>ODS 层</strong>(操作数据存储 Operational Data Store)。</p>
+<p>数据类型: 1. 业务需要的客户业务表；2. 非RDS层的计算数数据TDS中间表(转换数据存储 Transform Data Store)。</p>
+</li>
+<li><p><strong>RDS 层</strong>(报表数据存储 Report/Result Data Store)。</p>
+<p>报表加载直接使用的数据表；最佳实现方案是单层查询，若无法做到的话则考虑添加TDS数据中间表。</p>
+</li>
+</ul>
+<h3 id="表命名规范"><a href="#表命名规范" class="headerlink" title="表命名规范"></a>表命名规范</h3><ul>
+<li><a href="/developer/style-guide/mysql.html">MySQL 编程规范</a></li>
+<li>库名/表名/字段名统一小写。</li>
+<li>库名/表名/字段名禁止使用 mysql 保留字。</li>
+<li>ODS 层业务表命名: <code>ods_业务表名</code>。若客户数据表名有大写(Oracle/SQLServer), 则按驼峰转下划线规则，比如 <code>salesA</code> 对应 <code>ods_sales_a</code>。</li>
+<li>ODS 层中间表命名: <code>tds_功能描述</code>。比如聚合汇总后的粉丝用户画像中间表 <code>tds_fans_personas</code>，若基于中间表多次计算的中间表在保持原表名后继续追加功能描述，比如基于粉丝用户画像聚合出区域分布表 <code>tds_fans_personas_regional_distributions</code></li>
+<li>RDS 层数据表命名: <code>rds_数据表</code>。原则上 1. RDS 表数据量应该很小；2. RDS 数据只能源自 TDS 中间表。</li>
+</ul>
+<h3 id="脚本编程规范"><a href="#脚本编程规范" class="headerlink" title="脚本编程规范"></a>脚本编程规范</h3><p><em>注: 脚本部署路径参考<a href="/developer/environment-guide.html#线上环境规范">线上环境规范</a></em></p>
+<ol>
+<li>脚本第一行<a href="https://zh.wikipedia.org/zh-hans/Shebang" target="_blank" rel="noopener">Shebang</a> <code>#!/bin/bash</code></li>
+<li>脚本注解字段<ul>
+<li>开发人员: Jaden</li>
+<li>更新日期: 2019-10-29</li>
+<li>客户名称: Allergan</li>
+<li>业务模块: SalesA-ODS-To-TDS</li>
+<li>对接团队: ETOCRM</li>
+<li>定时任务: <code>30 00 * * *</code></li>
+<li>业务描述: </li>
+<li>代码步骤:</li>
+</ul>
+</li>
+<li>脚本执行严格模式 <code>set -e</code>, 遇错即中止执行</li>
+<li>规范式注释输出(日期+注释说明)函数 <code>logger</code></li>
+<li>脚本代码八股文<ul>
+<li><code>Shebang</code></li>
+<li>注解区域</li>
+<li>开启严格模式 <code>set -e</code></li>
+<li>变量、函数声明</li>
+<li>功能代码段<ul>
+<li>合理使用 <code>logger</code></li>
+<li>内部脚本输出<strong>不要</strong>重定向到日志，以便统一收集日志</li>
+</ul>
+</li>
+<li>日志、文档归档</li>
+<li>仪式感退出码(<code>exit 0</code>)</li>
+</ul>
+</li>
+<li>邮件通知</li>
+</ol>
+<p><code>sypetl</code> 功能逻辑伪代码</p>
+<pre><code class="hljs undefined">$ find 脚本绝对路径
+$ check 注解字段
+$ bash 脚本 &gt; 日志目录/脚本名称-日期.log
+$ send 邮件</code></pre>
+<p><code>sypetl</code> 调用示例 `sypetl intfocus <a href="/developer/etl-script-example.sh.html">example</a>`</p>
+<pre><code class="hljs undefined">$ sypetl
+操作示例:
+
+$ sypetl 公司名称 模块名称
+$ sypetlcheck 公司名称 模块名称
+
+脚本路径: /data/work/scripts/公司名称/模块名称/tools.sh
+
+$ sypetl intfocus example
+19/10/31 16:01:14 - 脚本路径: /data/work/scripts/intfocus/example/tools.sh
+19/10/31 16:01:14 - 检测必填项:
+19/10/31 16:01:14 - 配置正常 - ^# 开发人员: Aaron
+19/10/31 16:01:14 - 配置正常 - ^# 更新日期: 2019-10-29
+19/10/31 16:01:14 - 配置正常 - ^# 业务模块: SypEtl测试
+19/10/31 16:01:14 - 配置正常 - ^# 定时任务: 30 19 * * *
+19/10/31 16:01:14 - 配置正常 - ^# 代码步骤:
+19/10/31 16:01:14 - 配置正常 - ^# 更新日期: 2019-10-29
+19/10/31 16:01:14 - 配置正常 - ^# 客户名称: 艾尔建
+19/10/31 16:01:14 - 配置正常 - ^# 对接团队: 齐数ETOCRM
+19/10/31 16:01:14 - 配置正常 - ^# 代码步骤:
+19/10/31 16:01:14 - 配置正常 - ^# 业务描述:
+19/10/31 16:01:14 - 配置正常 - `set -e`
+19/10/31 16:01:14 - 日志路径: /data/work/logs/intfocus-example-191031160114.log
+19/10/31 16:01:14 - 邮件配置: /data/work/logs/sendmail.191031160114.json
+19/10/31 16:01:17 - 胜因运维&lt;jaden.li@jaden.tech&gt; =&gt; Jaden.Li&lt;jaden.li@jaden.tech&gt;, SypEtl测试, status: 250</code></pre>
+<h3 id="备份-其他规范"><a href="#备份-其他规范" class="headerlink" title="备份/其他规范"></a>备份/其他规范</h3><ul>
+<li>ODS/RDS 层所有的数据表设计、存储过程、触发器、视图、事件都需要维护在 <a href="https://gitlab.idata.mobi/shengyiplus/syp-model-scripts" target="_blank" rel="noopener">SypModelScripts</a></li>
+<li>ODS 层的 ODS 业务表数据需要每日备份，并做人工检查。</li>
+<li>存储过程按功能需求设计，禁止不同功能的需求使用同一个存储过程。</li>
+<li>定时事件(event) 按功能需求设计，禁止不同功能的需求使用同一个定时事件。</li>
+</ul>
+<h3 id="PERSON-概念"><a href="#PERSON-概念" class="headerlink" title="PERSON 概念"></a>PERSON 概念</h3><p>「PERSONA」是 Allen Cooper 提出来的一种通过调研和问卷获得的典型用户模型，用于产品需求挖掘与交互设计的方法。</p>
+<ul>
+<li><strong>P, 基本性(Primary)</strong>: 指该用户角色是否基于对真实用户的情景访谈;</li>
+<li><strong>E, 同理性(Empathy)</strong>: 指用户角色中包含姓名、照片和产品相关的描述，该用户角色是否引同理心;</li>
+<li><strong>R, 真实性(Realistic)</strong>: 指对那些每天与顾客打交道的人来说，用户角色是否看起来像真实人物;</li>
+<li><strong>S, 独特性(Singular)</strong>: 每个用户是否是独特的，彼此很少有相似性;</li>
+<li><strong>O, 目标性(Objectives)</strong>: 该用户角色是否包含与产品相关的高层次目标，是否包含关键词来描述该目标;</li>
+<li><strong>N, 数量性(Number)</strong>: 用户角色的数量是否足够少，以便设计团队能记住每个用户角色的姓名，以及其中的一个主要用户角色;</li>
+<li><strong>A, 应用性(Applicable)</strong>: 设计团队是否能使用用户角色作为一种实用工具进行设计决策。</li>
+</ul>
+<h2 id="报表开发流程"><a href="#报表开发流程" class="headerlink" title="报表开发流程"></a>报表开发流程</h2><h3 id="思维导图-1"><a href="#思维导图-1" class="headerlink" title="思维导图"></a>思维导图</h3><p><img src="/images/报表开发流程.png" alt="报表开发流程.png"></p>
+<p><em>注: attachments/xmind/报表开发流程.xmind</em></p>
+<h3 id="开发流程"><a href="#开发流程" class="headerlink" title="开发流程"></a>开发流程</h3><ol>
+<li>交流客户报表需求</li>
+<li>定向低保真原型图</li>
+<li>设计报表依赖的数据结构(RDS)</li>
+<li>填充伪业务数据</li>
+<li>报表开发，还原原型图</li>
+<li>与客户确认报表需求</li>
+<li>交流客户 ODS 层业务数据</li>
+<li>设计 ODS 层数据转换至 RDS 的 TDS 中间表</li>
+<li>实现存储过程/事件，同步 ODS -&gt; TDS -&gt; RDS</li>
+<li>维护表结构、存储过程、事件等代码至运维脚本项目</li>
+</ol>
+
+  
+  
+  <div class="footer" style="display:none;">
+      <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+<div class="bsa-cpc"></div>
+<script>
+  (function(){
+    if(typeof _bsa !== 'undefined' && _bsa) {
+    _bsa.init('default', 'CKYD62QM', 'placement:vuejsorg', {
+      target: '.bsa-cpc',
+      align: 'horizontal',
+      disable_css: 'true'
+    });
+      }
+  })();
+</script>
+
+    发现错误？想参与编辑？
+    <a href="https://github.com/vuejs/cn.vuejs.org/blob/master/src/developer/etl-devops-guide.md" target="_blank">
+      在 GitHub 上编辑此页！
+    </a>
+  </div>
+</div>
+
+        
+      </div>
+      <script src="/js/smooth-scroll.min.js"></script>
+    
+
+    <!-- main custom script for sidebars, version selects etc. -->
+    <script src="/js/css.escape.js"></script>
+    <script src="/js/common.js"></script>
+
+    <!-- search -->
+    <link href="//code.bdstatic.com/npm/docsearch.js@1.5.0/dist/cdn/docsearch.min.css" rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/css/search.css">
+    <script src="//code.bdstatic.com/npm/docsearch.js@1.5.0/dist/cdn/docsearch.min.js"></script>
+    <script>
+    [
+      '#search-query-nav',
+      '#search-query-sidebar',
+      '#search-query-menu'
+    ].forEach(function (selector) {
+      if (!document.querySelector(selector)) return
+      // search index defaults to v2
+      var match = window.location.pathname.match(/^\/(v\d+)/)
+      var version = match ? match[1] : 'v2'
+      docsearch({
+      appId: 'BH4D9OD16A',
+      apiKey: '5638280abff9d207417bb03be05f0b25',
+      indexName: 'vuejs_cn2',
+      inputSelector: selector,
+      algoliaOptions: { facetFilters: ["version:" + version] },
+      autocompleteOptions: { hint: false, appendTo: 'body'}
+      })
+    })
+    </script>
+
+    <!-- fastclick -->
+    <script src="//code.bdstatic.com/npm/fastclick@1.0.6/lib/fastclick.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      FastClick.attach(document.body)
+    }, false)
+    </script>
+  </body>
+</html>

@@ -1,0 +1,516 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <title>If-Else 优化方案 — 胜因学院</title>
+    <meta charset="utf-8">
+    <meta name="description" content="Vue.js - The Progressive JavaScript Framework">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="If-Else 优化方案 — Vue.js">
+    <meta property="og:description" content="Vue.js - The Progressive JavaScript Framework">
+    <meta property="og:image" content="https://cn.vuejs.org//images/logo.png">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="If-Else 优化方案 — Vue.js">
+    <meta name="twitter:description" content="Vue.js - The Progressive JavaScript Framework">
+    <meta name="twitter:image" content="https://cn.vuejs.org/images/logo.png">
+
+    <link rel="icon" href="/images/intfocus.png" type="image/png">
+
+    <meta name="msapplication-TileColor" content="#4fc08d">
+    <meta name="theme-color" content="#4fc08d">
+
+    <meta name="msapplication-config" content="browserconfig.xml">
+    <link rel="manifest" href="/manifest.json">
+
+    <!-- <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Roboto Mono' rel='stylesheet' type='text/css'> -->
+    <!-- <link href='//fonts.googleapis.com/css?family=Dosis:500&text=Vue.js' rel='stylesheet' type='text/css'> -->
+
+    <link href="//code.bdstatic.com/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- main page styles -->
+    <link rel="stylesheet" href="/css/page.css">
+
+    <!-- this needs to be loaded before guide's inline scripts -->
+    <script src="/js/vue.js"></script>
+    <script>
+      Vue.config.productionTip = false
+      window.PAGE_TYPE = "If-Else 优化方案"
+    </script>
+  </head>
+  <body class="docs">
+    <div id="mobile-bar" >
+      <a class="menu-button"></a>
+      <a class="logo" href="/"></a>
+    </div>
+    <div id="header">
+  <a id="logo" href="/">
+    <img src="/images/logo.png" alt="vue logo">
+    <span>Intfocus</span>
+  </a>
+  <ul id="nav">
+    <li>
+  <form id="search-form">
+    <input type="text" id="search-query-nav" class="search-query st-default-search-input">
+  </form>
+</li>
+<li class="nav-dropdown-container learn">
+  <a class="nav-link current">生态系统</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><h4>应用实例</h4></li>
+    <li>
+      <ul>
+        <li><a href="/application/syp-wxmp.html" class="nav-link">胜因学院<small>(小程序)</small></a></li>
+        <li><a href="/application/syp-android-tv.html" class="nav-link">胜因盒子<small>(TV大屏)</small></a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container learn">
+  <a class="nav-link current">开发文档</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><a href="/developer/guide.html" class="nav-link current">规范指南</a></li>
+    <li><h4>编程规范</h4></li>
+    <li>
+      <ul>
+        <li><a href="/developer/style-guide/gitlab.html" class="nav-link">Gitlab</a></li>
+        <li><a href="/developer/style-guide/java.html" class="nav-link">Java</a></li>
+        <li><a href="/developer/style-guide/mysql.html" class="nav-link">MySQL</a></li>
+        <li><a href="/developer/style-guide/javascript.html" class="nav-link">Javascript</a></li>
+        <li><a href="/developer/style-guide/cdn.html" class="nav-link">CDN 运维</a></li>
+      </ul>
+    </li>
+    <li><h4>开发规范</h4></li>
+    <li>
+      <ul>
+        <li><a href="/developer/environment-guide.html" class="nav-link">环境规范<small></small></a></li>
+        <li><a href="/developer/etl-devops-guide.html" class="nav-link">ETL 运维<small></small></a></li>
+        <li><a href="/developer/api-design-guide.html" class="nav-link">API 设计<small></small></a></li>
+        <li><a href="/developer/rdc-guide.html" class="nav-link">RDC 接口<small></small></a></li>
+        <li><a href="/developer/menu-guide.html" class="nav-link">业务菜单<small></small></a></li>
+      </ul>
+    </li>
+    <li><h4>接口文档</h4></li>
+    <li>
+      <ul>
+        <li><a href="/developer/api-guide/syp-wxmp.html" class="nav-link">胜因学院<small>(小程序)</small></a></li>
+        <li><a href="/developer/api-guide/datav-report.html" class="nav-link">DataV报表<small>(大屏)</small></a></li>
+        <li><a href="/developer/api-guide/java-admin-add-module.html" class="nav-link">添加模块<small>(运营平台)</small></a></li>
+      </ul>
+    </li>
+    <li><h4>项目源码</h4></li>
+    <li>
+      <ul>
+        <li><a href="/developer/project-connections.html" class="nav-link">源码体系</a></li>
+        <li><a href="/developer/sypctl-readme.html" class="nav-link">SypCtl 工具</a></li>
+        <li><a href="/developer/jenkins-deploy.html" class="nav-link">Jenkins 部署</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container learn">
+  <a class="nav-link current">企业文化</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><h4>职场培训</h4></li>
+    <li>
+      <ul>
+        <li><a href="/corporate-culture/workplace-ceremony.html" class="nav-link">职场共识</a></li>
+        <li><a href="/corporate-culture/teamwork.html" class="nav-link">职场协作</a></li>
+      </ul>
+    </li>
+    <li><h4>生命力</h4></li>
+    <li>
+      <ul>
+        <li><a href="/corporate-culture/online-documents.html" class="nav-link">在线文档</a></li>
+        <li><a href="/corporate-culture/weekly-publication.html" class="nav-link">胜因周刊</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="https://www.intfocus.com" target="_blank" class="nav-link team">官网</a>
+</li>
+
+  </ul>
+</div>
+
+    
+    
+      <div id="main" class="fix-sidebar">
+        
+          
+  <div class="sidebar">
+  <div class="sidebar-inner">
+    <ul class="main-menu">
+      <li>
+  <form id="search-form">
+    <input type="text" id="search-query-sidebar" class="search-query st-default-search-input">
+  </form>
+</li>
+<li class="nav-dropdown-container learn">
+  <a class="nav-link current">生态系统</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><h4>应用实例</h4></li>
+    <li>
+      <ul>
+        <li><a href="/application/syp-wxmp.html" class="nav-link">胜因学院<small>(小程序)</small></a></li>
+        <li><a href="/application/syp-android-tv.html" class="nav-link">胜因盒子<small>(TV大屏)</small></a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container learn">
+  <a class="nav-link current">开发文档</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><a href="/developer/guide.html" class="nav-link current">规范指南</a></li>
+    <li><h4>编程规范</h4></li>
+    <li>
+      <ul>
+        <li><a href="/developer/style-guide/gitlab.html" class="nav-link">Gitlab</a></li>
+        <li><a href="/developer/style-guide/java.html" class="nav-link">Java</a></li>
+        <li><a href="/developer/style-guide/mysql.html" class="nav-link">MySQL</a></li>
+        <li><a href="/developer/style-guide/javascript.html" class="nav-link">Javascript</a></li>
+        <li><a href="/developer/style-guide/cdn.html" class="nav-link">CDN 运维</a></li>
+      </ul>
+    </li>
+    <li><h4>开发规范</h4></li>
+    <li>
+      <ul>
+        <li><a href="/developer/environment-guide.html" class="nav-link">环境规范<small></small></a></li>
+        <li><a href="/developer/etl-devops-guide.html" class="nav-link">ETL 运维<small></small></a></li>
+        <li><a href="/developer/api-design-guide.html" class="nav-link">API 设计<small></small></a></li>
+        <li><a href="/developer/rdc-guide.html" class="nav-link">RDC 接口<small></small></a></li>
+        <li><a href="/developer/menu-guide.html" class="nav-link">业务菜单<small></small></a></li>
+      </ul>
+    </li>
+    <li><h4>接口文档</h4></li>
+    <li>
+      <ul>
+        <li><a href="/developer/api-guide/syp-wxmp.html" class="nav-link">胜因学院<small>(小程序)</small></a></li>
+        <li><a href="/developer/api-guide/datav-report.html" class="nav-link">DataV报表<small>(大屏)</small></a></li>
+        <li><a href="/developer/api-guide/java-admin-add-module.html" class="nav-link">添加模块<small>(运营平台)</small></a></li>
+      </ul>
+    </li>
+    <li><h4>项目源码</h4></li>
+    <li>
+      <ul>
+        <li><a href="/developer/project-connections.html" class="nav-link">源码体系</a></li>
+        <li><a href="/developer/sypctl-readme.html" class="nav-link">SypCtl 工具</a></li>
+        <li><a href="/developer/jenkins-deploy.html" class="nav-link">Jenkins 部署</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container learn">
+  <a class="nav-link current">企业文化</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><h4>职场培训</h4></li>
+    <li>
+      <ul>
+        <li><a href="/corporate-culture/workplace-ceremony.html" class="nav-link">职场共识</a></li>
+        <li><a href="/corporate-culture/teamwork.html" class="nav-link">职场协作</a></li>
+      </ul>
+    </li>
+    <li><h4>生命力</h4></li>
+    <li>
+      <ul>
+        <li><a href="/corporate-culture/online-documents.html" class="nav-link">在线文档</a></li>
+        <li><a href="/corporate-culture/weekly-publication.html" class="nav-link">胜因周刊</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="https://www.intfocus.com" target="_blank" class="nav-link team">官网</a>
+</li>
+
+    </ul>
+    <div class="list">
+      
+      
+        <h2>
+          
+          
+          
+        </h2>
+        <ul class="menu-root">
+  
+    
+    
+    <li>
+      <a href="/developer/style-guide/if-else-optimize-solutions.html" class="sidebar-link current">If-Else 优化方案</a>
+    </li>
+  
+</ul>
+
+      
+    </div>
+  </div>
+</div>
+
+<!--
+<div id="sidebar-sponsors-platinum-right">
+  <div class="main-sponsor">
+    <span>白金赞助商</span>
+    <div>
+    <a href="https://bit.dev/?utm_source=vue&utm_medium=vue&utm_campaign=vue&utm_term=vue&utm_content=vue" target="_blank" class="logo">
+      <img src="/images/bit.png" alt="Bit">
+    </a>
+    <a href="http://tooltwist.com/" target="_blank" class="logo">
+      <img src="/images/tooltwist.png" alt="Tooltwist">
+    </a>
+    <a href="https://vueschool.io/?utm_source=Vuejs.org&utm_medium=Banner&utm_campaign=Sponsored%20Banner&utm_content=V1" target="_blank" class="logo">
+      <img src="/images/vueschool.png" alt="VueSchool">
+    </a>
+    <a href="https://vehikl.com/" target="_blank" class="logo">
+      <img src="/images/vehikl.png" alt="Vehikl">
+    </a>
+    <a href="https://www.nativescript.org/vue?utm_source=vue-js-org&utm_medium=website&utm_campaign=nativescript-awareness" target="_blank" class="logo">
+      <img src="/images/nativescript.png" alt="NativeScript">
+    </a>
+    <a href="https://teeplusplusclth.com/" target="_blank" class="logo">
+      <img src="/images/tee__.png" alt="Tee++">
+    </a>
+    </div>
+  </div>
+  <a class="become-backer" href="/support-vuejs">
+    成为赞助者
+  </a>
+</div>
+
+-->
+
+
+<div class="content If-Else 优化方案 with-sidebar ">
+  
+    
+      
+    
+  
+  
+    <h1>If-Else 优化方案</h1>
+  
+
+  
+
+  
+    <p>当代码已经复杂到难以维护的程度之后，只能狠下心重构优化。那，有什么方案可以优雅的优化掉这些多余的if/else?</p>
+<h2 id="1-提前return"><a href="#1-提前return" class="headerlink" title="1. 提前return"></a>1. 提前return</h2><p>这是判断条件取反的做法，代码在逻辑表达上会更清晰，看下面代码：</p>
+<pre><code class="hljs undefined">if (condition) &#123;
+ // do something
+&#125; else &#123;
+  return xxx;
+&#125;</code></pre>
+<p>其实，每次看到上面这种代码，心里就抓痒，完全可以先判断<code>!condition</code>，干掉<code>else</code>。</p>
+<pre><code class="hljs undefined">if (!condition) &#123;
+  return xxx;
+ 
+&#125; 
+// do something</code></pre>
+<h2 id="2-策略模式"><a href="#2-策略模式" class="headerlink" title="2. 策略模式"></a>2. 策略模式</h2><p>有这么一种场景，根据不同的参数走不同的逻辑，其实这种场景很常见。最一般的实现：</p>
+<pre><code class="hljs undefined">if (strategy.equals(&quot;fast&quot;)) &#123;
+  // 快速执行
+&#125; else if (strategy.equals(&quot;normal&quot;)) &#123;
+  // 正常执行
+&#125; else if (strategy.equals(&quot;smooth&quot;)) &#123;
+  // 平滑执行
+&#125; else if (strategy.equals(&quot;slow&quot;)) &#123;
+  // 慢慢执行
+&#125;</code></pre>
+<p>看上面代码，有4种策略，有两种优化方案。</p>
+<h3 id="2-1-多态"><a href="#2-1-多态" class="headerlink" title="2.1 多态"></a>2.1 多态</h3><pre><code class="hljs undefined">interface Strategy &#123;
+  void run() throws Exception;
+&#125;
+
+class FastStrategy implements Strategy &#123;
+    @Override
+    void run() throws Exception &#123;
+        // 快速执行逻辑
+    &#125;
+&#125;
+
+class NormalStrategy implements Strategy &#123;
+    @Override
+    void run() throws Exception &#123;
+        // 正常执行逻辑
+    &#125;
+&#125;
+
+class SmoothStrategy implements Strategy &#123;
+    @Override
+    void run() throws Exception &#123;
+        // 平滑执行逻辑
+    &#125;
+&#125;
+
+class SlowStrategy implements Strategy &#123;
+    @Override
+    void run() throws Exception &#123;
+        // 慢速执行逻辑
+    &#125;
+&#125;</code></pre>
+<p>具体策略对象存放在一个Map中，优化后的实现</p>
+<pre><code class="hljs undefined">Strategy strategy = map.get(param);
+strategy.run();</code></pre>
+<p>上面这种优化方案有一个弊端，为了能够快速拿到对应的策略实现，需要map对象来保存策略，当添加一个新策略的时候，还需要手动添加到map中，容易被忽略。</p>
+<h3 id="2-2-枚举"><a href="#2-2-枚举" class="headerlink" title="2.2 枚举"></a>2.2 枚举</h3><p>发现很多同学不知道在枚举中可以定义方法，这里定义一个表示状态的枚举，另外可以实现一个run方法。</p>
+<pre><code class="hljs undefined">public enum Status &#123;
+    NEW(0) &#123;
+      @Override
+      void run() &#123;
+        //do something  
+      &#125;
+    &#125;,
+    RUNNABLE(1) &#123;
+      @Override
+       void run() &#123;
+         //do something  
+      &#125;
+    &#125;;
+
+    public int statusCode;
+
+    abstract void run();
+
+    Status(int statusCode)&#123;
+        this.statusCode = statusCode;
+    &#125;
+&#125;</code></pre>
+<p>重新定义策略枚举</p>
+<pre><code class="hljs undefined">public enum Strategy &#123;
+    FAST &#123;
+      @Override
+      void run() &#123;
+        //do something  
+      &#125;
+    &#125;,
+    NORMAL &#123;
+      @Override
+       void run() &#123;
+         //do something  
+      &#125;
+    &#125;,
+
+    SMOOTH &#123;
+      @Override
+       void run() &#123;
+         //do something  
+      &#125;
+    &#125;,
+
+    SLOW &#123;
+      @Override
+       void run() &#123;
+         //do something  
+      &#125;
+    &#125;;
+    abstract void run();
+&#125;
+
+Strategy strategy = Strategy.valueOf(param);
+strategy.run();</code></pre>
+<h2 id="3-学会使用-Optional"><a href="#3-学会使用-Optional" class="headerlink" title="3. 学会使用 Optional"></a>3. 学会使用 Optional</h2><p>Optional主要用于非空判断，由于是jdk8新特性，所以使用的不是特别多，但是用起来真的爽。使用之前：</p>
+<pre><code class="hljs undefined">if (user == null) &#123;
+    //do action 1
+&#125; else &#123;
+    //do action2
+&#125;</code></pre>
+<p>如果登录用户为空，执行action1，否则执行action 2，使用Optional优化之后，让非空校验更加优雅，间接的减少if操作</p>
+<pre><code class="hljs undefined">Optional&lt;User&gt; userOptional = Optional.ofNullable(user);
+userOptional.map(action1).orElse(action2);</code></pre>
+<h2 id="4-数组小技巧"><a href="#4-数组小技巧" class="headerlink" title="4. 数组小技巧"></a>4. 数组小技巧</h2><p>来自google解释，这是一种编程模式，叫做表驱动法，本质是从表里查询信息来代替逻辑语句，比如有这么一个场景，通过月份来获取当月的天数，仅作为案例演示，数据并不严谨。一般的实现：</p>
+<pre><code class="hljs undefined">int getDays(int month)&#123;
+    if (month == 1)  return 31;
+    if (month == 2)  return 29;
+    if (month == 3)  return 31;
+    if (month == 4)  return 30;
+    if (month == 5)  return 31;
+    if (month == 6)  return 30;
+    if (month == 7)  return 31;
+    if (month == 8)  return 31;
+    if (month == 9)  return 30;
+    if (month == 10)  return 31;
+    if (month == 11)  return 30;
+    if (month == 12)  return 31;
+&#125;
+优化后的代码</code></pre>
+<p>int monthDays[12] = {31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};<br>int getDays(int month){<br>    return monthDays[–month];<br>}<br><code>`</code></p>
+<p>结束if else作为每种编程语言都不可或缺的条件语句，在编程时会大量的用到。一般建议嵌套不要超过三层，如果一段代码存在过多的if else嵌套，代码的可读性就会急速下降，后期维护难度也大大提高。</p>
+<p>摘自: <a href="https://www.zhihu.com/question/344856665s" target="_blank" rel="noopener">优化代码中大量的if/else，你有什么方案?</a></p>
+
+  
+  
+  <div class="footer" style="display:none;">
+      <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+<div class="bsa-cpc"></div>
+<script>
+  (function(){
+    if(typeof _bsa !== 'undefined' && _bsa) {
+    _bsa.init('default', 'CKYD62QM', 'placement:vuejsorg', {
+      target: '.bsa-cpc',
+      align: 'horizontal',
+      disable_css: 'true'
+    });
+      }
+  })();
+</script>
+
+    发现错误？想参与编辑？
+    <a href="https://github.com/vuejs/cn.vuejs.org/blob/master/src/developer/style-guide/if-else-optimize-solutions.md" target="_blank">
+      在 GitHub 上编辑此页！
+    </a>
+  </div>
+</div>
+
+        
+      </div>
+      <script src="/js/smooth-scroll.min.js"></script>
+    
+
+    <!-- main custom script for sidebars, version selects etc. -->
+    <script src="/js/css.escape.js"></script>
+    <script src="/js/common.js"></script>
+
+    <!-- search -->
+    <link href="//code.bdstatic.com/npm/docsearch.js@1.5.0/dist/cdn/docsearch.min.css" rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/css/search.css">
+    <script src="//code.bdstatic.com/npm/docsearch.js@1.5.0/dist/cdn/docsearch.min.js"></script>
+    <script>
+    [
+      '#search-query-nav',
+      '#search-query-sidebar',
+      '#search-query-menu'
+    ].forEach(function (selector) {
+      if (!document.querySelector(selector)) return
+      // search index defaults to v2
+      var match = window.location.pathname.match(/^\/(v\d+)/)
+      var version = match ? match[1] : 'v2'
+      docsearch({
+      appId: 'BH4D9OD16A',
+      apiKey: '5638280abff9d207417bb03be05f0b25',
+      indexName: 'vuejs_cn2',
+      inputSelector: selector,
+      algoliaOptions: { facetFilters: ["version:" + version] },
+      autocompleteOptions: { hint: false, appendTo: 'body'}
+      })
+    })
+    </script>
+
+    <!-- fastclick -->
+    <script src="//code.bdstatic.com/npm/fastclick@1.0.6/lib/fastclick.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      FastClick.attach(document.body)
+    }, false)
+    </script>
+  </body>
+</html>
